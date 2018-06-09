@@ -1,0 +1,16 @@
+PODS:
+  - Hashtags (0.1.0)
+
+DEPENDENCIES:
+  - Hashtags (from `../`)
+
+EXTERNAL SOURCES:
+  Hashtags:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Hashtags: 8242bb6a543c34b75a68210d72b81885cc548816
+
+PODFILE CHECKSUM: e75bac6d03a48c01f03069f41841168447bf3dd0
+
+COCOAPODS: 1.4.0

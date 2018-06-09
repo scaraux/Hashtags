@@ -1,0 +1,6 @@
+framework module Pods_Hashtags_Tests {
+  umbrella header "Pods-Hashtags_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Hashtags",
+  "version": "0.1.0",
+  "summary": "A short description of Hashtags.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/gottingoscar@gmail.com/Hashtags",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "gottingoscar@gmail.com": "gottingoscar@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/gottingoscar@gmail.com/Hashtags.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "Hashtags/Classes/**/*"
+}
