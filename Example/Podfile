@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Hashtags_Example' do
+  pod 'Hashtags', :path => '../'
+
+  target 'Hashtags_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
