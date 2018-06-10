@@ -21,6 +21,7 @@
 		A880C6EEB8722CCF692D6D95E8CDFFC5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		BCE955C5F48EE355D6B14656300D50A7 /* Pods-Hashtags_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF99946529651261883328E90DE237F /* Pods-Hashtags_Example-dummy.m */; };
 		BD98E46F9A94F7665240163E87527403 /* String+size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FE7DC2D57782B000302B7530951B2F /* String+size.swift */; };
+		D0A68EFF20CD0CFC00943A64 /* HashtagConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A68EFE20CD0CFB00943A64 /* HashtagConfiguration.swift */; };
 		D3A7988BD3E118B4C3FC5EA73CBD35C6 /* Hashtag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AEEEF40E61AD0BE01A7AF1E45B1A35 /* Hashtag.swift */; };
 		E3E7C9722291E78A9A724B6E4C61BE2C /* UIImage+resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085B15D2221FAE87F6FAD018D4DF222 /* UIImage+resize.swift */; };
 		E785FB0204D6DCADDD74E13A61CFDF64 /* Pods-Hashtags_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 851A95E9694229D5D9168F476A48F7BA /* Pods-Hashtags_Tests-dummy.m */; };
@@ -50,13 +51,13 @@
 		0F8C81E83BAD60077C5EEDD1829A3162 /* Pods-Hashtags_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Hashtags_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		1927849E2AA35C536E1EF9946F90B26E /* Pods-Hashtags_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Hashtags_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		1E642A29EF760AF4D2C51F99A38B9799 /* Pods-Hashtags_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Hashtags_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		276C614F2A3FCAA9A75D0E8A125799FB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		276C614F2A3FCAA9A75D0E8A125799FB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		27E3ECD47910DA4AFC186CDEF80E14A0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		283F2A5A6928379352E78E68A4BB0235 /* Hashtags.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Hashtags.bundle; path = "Hashtags-Hashtags.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		283F2A5A6928379352E78E68A4BB0235 /* Hashtags.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Hashtags.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F0C6F9469231F84733619461CA065C2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34FE7DC2D57782B000302B7530951B2F /* String+size.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+size.swift"; sourceTree = "<group>"; };
 		4547381F6D56CF1B40A7D73C3C589A4A /* HashtagView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HashtagView.swift; path = Hashtags/Classes/HashtagView.swift; sourceTree = "<group>"; };
-		454F3E5E2E86F5A923E15F66E8D7F67D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		454F3E5E2E86F5A923E15F66E8D7F67D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		482C212F797E730318A24596640022AB /* Pods-Hashtags_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Hashtags_Example-resources.sh"; sourceTree = "<group>"; };
 		496FDAD5E83214FF5F327E9C2FDEC78D /* Pods-Hashtags_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Hashtags_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		51EA4B7407CE6C111E0A3B7FD56C4C7A /* HashtagCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HashtagCollectionViewCell.swift; path = Hashtags/Classes/HashtagCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -71,14 +72,14 @@
 		76D4E207936A6F2193E2D9896BFE3D06 /* RemovableHashtagCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RemovableHashtagCollectionViewCell.swift; path = Hashtags/Classes/RemovableHashtagCollectionViewCell.swift; sourceTree = "<group>"; };
 		7717BFDB07E8A960BB3DA75830B266AE /* Pods-Hashtags_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Hashtags_Tests-resources.sh"; sourceTree = "<group>"; };
 		8015FF7362CA53444A829CE882B7C385 /* Pods-Hashtags_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Hashtags_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		8050DB9E455B75F31F13BC313AD571D3 /* Hashtags.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Hashtags.framework; path = Hashtags.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8050DB9E455B75F31F13BC313AD571D3 /* Hashtags.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Hashtags.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8085B15D2221FAE87F6FAD018D4DF222 /* UIImage+resize.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImage+resize.swift"; sourceTree = "<group>"; };
 		851A95E9694229D5D9168F476A48F7BA /* Pods-Hashtags_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Hashtags_Tests-dummy.m"; sourceTree = "<group>"; };
 		895E0453D8954433CB11939FFD6213F0 /* Pods-Hashtags_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Hashtags_Example-frameworks.sh"; sourceTree = "<group>"; };
-		8C83B2FD225101CE2ED9A7D7031350A7 /* Hashtags.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = Hashtags.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8C83B2FD225101CE2ED9A7D7031350A7 /* Hashtags.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = Hashtags.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8CF99946529651261883328E90DE237F /* Pods-Hashtags_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Hashtags_Example-dummy.m"; sourceTree = "<group>"; };
 		8F4A625D4BD35DA80283338AA788C5E6 /* Pods-Hashtags_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Hashtags_Example.release.xcconfig"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9AEAB7B32AFC0EBC09AC6657A9A014D3 /* close.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = close.png; path = Hashtags/Assets/close.png; sourceTree = "<group>"; };
 		9E22BCF5FA687C8E7AFB0C0AD36F7261 /* AlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlignedCollectionViewFlowLayout.swift; path = Hashtags/Classes/AlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		A1A69F74384882DFE394D930B4A36FB0 /* Pods-Hashtags_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Hashtags_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -86,11 +87,12 @@
 		BFE6558BC2BA0363DBAEB5D48513FB5B /* Hashtags.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Hashtags.modulemap; sourceTree = "<group>"; };
 		C29FB9916CE883A7326C13882FAA6A54 /* Hashtags-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Hashtags-prefix.pch"; sourceTree = "<group>"; };
 		C3D247FBBC80BEC7F5DCBDE4116F0CDD /* Hashtags.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Hashtags.xcconfig; sourceTree = "<group>"; };
+		D0A68EFE20CD0CFB00943A64 /* HashtagConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HashtagConfiguration.swift; path = Hashtags/Classes/HashtagConfiguration.swift; sourceTree = "<group>"; };
 		D3AF46192956ECF695A0AD48EA3F669A /* Pods-Hashtags_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Hashtags_Example-umbrella.h"; sourceTree = "<group>"; };
 		DAD92803525A1980F7F67C1280798A92 /* Pods-Hashtags_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Hashtags_Tests.modulemap"; sourceTree = "<group>"; };
 		E3C877548A82F25D936D548CBAE5A424 /* Pods-Hashtags_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Hashtags_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		E8A2204EB2DAB3D462BBF8FD6C0276D9 /* Pods_Hashtags_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Hashtags_Tests.framework; path = "Pods-Hashtags_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F13F5EC1632A9BEC671A0BCD8FCC5A51 /* Pods_Hashtags_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Hashtags_Example.framework; path = "Pods-Hashtags_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8A2204EB2DAB3D462BBF8FD6C0276D9 /* Pods_Hashtags_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hashtags_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F13F5EC1632A9BEC671A0BCD8FCC5A51 /* Pods_Hashtags_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hashtags_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4AEEEF40E61AD0BE01A7AF1E45B1A35 /* Hashtag.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Hashtag.swift; path = Hashtags/Classes/Hashtag.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,6 +173,7 @@
 		710A78D5C7A8E3F427881537D416491B /* Hashtags */ = {
 			isa = PBXGroup;
 			children = (
+				D0A68EFE20CD0CFB00943A64 /* HashtagConfiguration.swift */,
 				9E22BCF5FA687C8E7AFB0C0AD36F7261 /* AlignedCollectionViewFlowLayout.swift */,
 				F4AEEEF40E61AD0BE01A7AF1E45B1A35 /* Hashtag.swift */,
 				51EA4B7407CE6C111E0A3B7FD56C4C7A /* HashtagCollectionViewCell.swift */,
@@ -443,6 +446,7 @@
 				6FB43E0E1B5F173C08A46CC5F29069A0 /* HashtagView.swift in Sources */,
 				9299E43EB65D10C54B3A8BBCD26CC722 /* HashtagViewDelegate.swift in Sources */,
 				A2C5C000B08D82E8C3897C9EBD89F986 /* RemovableHashtagCollectionViewCell.swift in Sources */,
+				D0A68EFF20CD0CFC00943A64 /* HashtagConfiguration.swift in Sources */,
 				BD98E46F9A94F7665240163E87527403 /* String+size.swift in Sources */,
 				E3E7C9722291E78A9A724B6E4C61BE2C /* UIImage+resize.swift in Sources */,
 			);

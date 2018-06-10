@@ -41,4 +41,5 @@ open class HashTag: Equatable {
     
     open var text: String
     open var isRemovable: Bool
+    open var configuration: HashtagConfiguration?
 }

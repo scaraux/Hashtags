@@ -11,9 +11,9 @@ import UIKit
 // MARK: Class
 
 public enum ResizeMode {
-    case rigid
-    case wrap
+    case manual
     case expandable
+    case wrap
 }
 
 @IBDesignable
@@ -22,6 +22,8 @@ open class HashtagView: UIView {
     private var sizingLabel = UILabel(frame: .zero)
     
     private var originalHeight: CGFloat?
+    
+    private var configuration = HashtagConfiguration()
 
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -59,6 +61,88 @@ open class HashtagView: UIView {
         }
     }
     
+    
+    // MARK: Container padding (insets)
+    
+    @IBInspectable
+    open var containerPaddingLeft: CGFloat = 10.0 {
+        didSet {
+            setup()
+        }
+    }
+    
+    @IBInspectable
+    open var containerPaddingRight: CGFloat = 10.0 {
+        didSet {
+            setup()
+        }
+    }
+    
+    @IBInspectable
+    open var containerPaddingTop: CGFloat = 10.0 {
+        didSet {
+            setup()
+        }
+    }
+    
+    @IBInspectable
+    open var containerPaddingBottom: CGFloat = 10.0 {
+        didSet {
+            setup()
+        }
+    }
+    
+    // MARK: Hashtag cell padding
+    
+    @IBInspectable
+    open var hashtagPaddingLeft: CGFloat = 5.0 {
+        didSet {
+            self.configuration.paddingLeft = self.hashtagPaddingLeft
+            self.collectionView.reloadData()
+        }
+    }
+    
+    @IBInspectable
+    open var hashtagPaddingRight: CGFloat = 5.0 {
+        didSet {
+            self.configuration.paddingRight = self.hashtagPaddingRight
+            self.collectionView.reloadData()
+        }
+    }
+    
+    @IBInspectable
+    open var hashtagPaddingTop: CGFloat = 5.0 {
+        didSet {
+            self.configuration.paddingTop = self.hashtagPaddingTop
+            self.collectionView.reloadData()
+        }
+    }
+    
+    @IBInspectable
+    open var hashtagPaddingBottom: CGFloat = 5.0 {
+        didSet {
+            self.configuration.paddingBottom = self.hashtagPaddingBottom
+            self.collectionView.reloadData()
+        }
+    }
+    
+    @IBInspectable
+    open var hashtagCloseButtonSize: CGFloat = 10.0 {
+        didSet {
+            self.configuration.closeIconSize = self.hashtagCloseButtonSize
+            self.collectionView.reloadData()
+        }
+    }
+    @IBInspectable
+    open var hashtagCloseButtonSpacing: CGFloat = 5.0 {
+        didSet {
+            self.configuration.closeIconSpacing = self.hashtagCloseButtonSpacing
+            self.collectionView.reloadData()
+        }
+    }
+    
+    // MARK: Hashtags cell margins
+    
     @IBInspectable
     open var horizontalTagSpacing: CGFloat = 7.0 {
         didSet {
@@ -67,39 +151,13 @@ open class HashtagView: UIView {
     }
     
     @IBInspectable
-    open var  verticalTagSpacing: CGFloat = 5.0 {
+    open var verticalTagSpacing: CGFloat = 5.0 {
         didSet {
             setup()
         }
     }
     
-    @IBInspectable
-    open var  containerPaddingLeft: CGFloat = 10.0 {
-        didSet {
-            setup()
-        }
-    }
-    
-    @IBInspectable
-    open var  containerPaddingRight: CGFloat = 10.0 {
-        didSet {
-            setup()
-        }
-    }
-    
-    @IBInspectable
-    open var  containerPaddingTop: CGFloat = 10.0 {
-        didSet {
-            setup()
-        }
-    }
-    
-    @IBInspectable
-    open var  containerPaddingBottom: CGFloat = 10.0 {
-        didSet {
-            setup()
-        }
-    }
+    // MARK: Constructors
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -129,6 +187,13 @@ open class HashtagView: UIView {
     }
 
     func setup() {
+        self.configuration.paddingLeft = self.hashtagPaddingLeft
+        self.configuration.paddingRight = self.hashtagPaddingRight
+        self.configuration.paddingTop = self.hashtagPaddingTop
+        self.configuration.paddingBottom = self.hashtagPaddingBottom
+        self.configuration.closeIconSize = self.hashtagCloseButtonSize
+        self.configuration.closeIconSpacing = self.hashtagCloseButtonSpacing
+        
         self.clipsToBounds = true
         
         if self.height == nil {
@@ -227,6 +292,12 @@ extension HashtagView {
     }
 }
 
+extension HashtagView: HashtagViewDelegate {
+    public func hashtagRemoved(hashtag: HashTag) {
+        removeTag(tag: hashtag)
+    }
+}
+
 extension HashtagView: UICollectionViewDelegate, UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.hashtags.count
@@ -239,7 +310,7 @@ extension HashtagView: UICollectionViewDelegate, UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RemovableHashtagCollectionViewCell.cellIdentifier,
                                                           for: indexPath) as! RemovableHashtagCollectionViewCell
             
-            cell.configureWithTag(tag: hashtag)
+            cell.configureWithTag(tag: hashtag, configuration: self.configuration)
             cell.delegate = self
             return cell
         }
@@ -255,21 +326,23 @@ extension HashtagView: UICollectionViewDelegateFlowLayout {
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let hashtag: HashTag = self.hashtags[indexPath.item]
-        let size = hashtag.text.sizeOfString(usingFont: UIFont.systemFont(ofSize: 14.0))
+        let textDimensions = hashtag.text.sizeOfString(usingFont: UIFont.systemFont(ofSize: 14.0))
         
-        let padding: CGFloat = 10.0
+        var calculatedHeight = CGFloat()
+        var calculatedWidth = CGFloat()
         
-        if hashtag.isRemovable {
-            let closeButtonSpacing: CGFloat = 0.0
-            let closeButtonWidth: CGFloat = 20.0
-            return CGSize(width: size.width + closeButtonSpacing + closeButtonWidth + padding, height: size.height + 6)
-        }
-        return CGSize(width: size.width + padding, height: size.height + 6)
-    }
-}
+        calculatedHeight = textDimensions.height + 6
 
-extension HashtagView: HashtagViewDelegate {
-    public func hashtagRemoved(hashtag: HashTag) {
-        removeTag(tag: hashtag)
+        if hashtag.isRemovable {
+            calculatedWidth =
+                configuration.paddingLeft
+                + textDimensions.width
+                + configuration.closeIconSpacing
+                + configuration.closeIconSize
+                + configuration.paddingRight
+        } else {
+            calculatedWidth = configuration.paddingLeft + textDimensions.width + configuration.paddingRight
+        }
+        return CGSize(width: calculatedWidth, height: calculatedHeight)
     }
 }

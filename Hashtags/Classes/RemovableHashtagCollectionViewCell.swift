@@ -14,7 +14,13 @@ fileprivate extension Selector {
 }
 
 open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
-
+    
+    var paddingLeftConstraint: NSLayoutConstraint?
+    var paddingRightConstraint: NSLayoutConstraint?
+    var removeButtonHeightConstraint: NSLayoutConstraint?
+    var removeButtonWidthConstraint: NSLayoutConstraint?
+    var removeButtonSpacingConstraint: NSLayoutConstraint?
+    
     static let cellIdentifier = "RemovableHashtagCollectionViewCell"
     
     lazy var wordLabel : UILabel = {
@@ -29,14 +35,14 @@ open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
         let bundle = Bundle(for: RemovableHashtagCollectionViewCell.self)
         let removeIcon = UIImage(named: "close", in: bundle, compatibleWith: nil)!.scaleImageToFitSize(size: CGSize(width: 10.0, height: 10.0))
         btn.setImage(removeIcon, for: .normal)
-        btn.imageView?.contentMode = .center
+        btn.imageView?.contentMode = .scaleAspectFill
         btn.imageView?.tintColor = UIColor.black.withAlphaComponent(0.9)
         return btn
     }()
     
     open var delegate: HashtagViewDelegate?
     open var hashtag: HashTag?
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -58,24 +64,44 @@ open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
         
         self.addSubview(wordLabel)
         self.addSubview(removeButton)
-        
+
         self.wordLabel.translatesAutoresizingMaskIntoConstraints = false
         self.removeButton.translatesAutoresizingMaskIntoConstraints = false
         
-        self.wordLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5).isActive = true
-        self.wordLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        // Padding left
+        self.paddingLeftConstraint = self.wordLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0.0)
+        self.paddingLeftConstraint!.isActive = true
+        
+        // Text width
         self.wordLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 10).isActive = true
         
-        self.removeButton.leadingAnchor.constraint(equalTo: self.wordLabel.trailingAnchor, constant: 0.0).isActive = true
+        // Center Y alignment
+        self.wordLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         self.removeButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        self.removeButton.widthAnchor.constraint(equalToConstant: 20.0).isActive = true
-        self.removeButton.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
+        
+        // Remove button spacing
+        self.removeButtonSpacingConstraint = self.removeButton.leadingAnchor.constraint(equalTo: self.wordLabel.trailingAnchor, constant: 0.0)
+        self.removeButtonSpacingConstraint!.isActive = true
+        
+        // Remove button width
+        self.removeButtonWidthConstraint = self.removeButton.widthAnchor.constraint(equalToConstant: 0.0)
+        self.removeButtonWidthConstraint!.isActive = true
+
+        // Remove button height
+        self.removeButtonHeightConstraint = self.removeButton.heightAnchor.constraint(equalTo: self.wordLabel.heightAnchor)
+        self.removeButtonHeightConstraint!.isActive = true
+        
+        // Remove button target
         self.removeButton.addTarget(self, action: Selector.removeButtonClicked, for: .touchUpInside)
     }
     
-    open func configureWithTag(tag: HashTag) {
+    open func configureWithTag(tag: HashTag, configuration: HashtagConfiguration) {
         self.hashtag = tag
         wordLabel.text = tag.text
+
+        self.paddingLeftConstraint!.constant = configuration.paddingLeft
+        self.removeButtonWidthConstraint!.constant = configuration.closeIconSize
+        self.removeButtonSpacingConstraint!.constant = configuration.closeIconSpacing
     }
     
     @objc
