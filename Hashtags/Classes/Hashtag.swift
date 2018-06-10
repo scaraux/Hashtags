@@ -1,6 +1,6 @@
 //
 //  Hashtag.swift
-//  Outfit
+//  Hashtags
 //
 //  Created by Oscar Götting on 6/6/18.
 //  Copyright © 2018 Oscar Götting. All rights reserved.
@@ -34,7 +34,7 @@ open class HashTag: Equatable {
         return lhs.text == rhs.text
     }
     
-    init(word: String, isRemovable: Bool = false) {
+    public init(word: String, isRemovable: Bool = false) {
         self.text = word
         self.isRemovable = isRemovable
     }

@@ -1,6 +1,6 @@
 //
 //  HashtagCollectionViewCell.swift
-//  Outfit
+//  Hashtags
 //
 //  Created by Oscar Götting on 6/8/18.
 //  Copyright © 2018 Oscar Götting. All rights reserved.
