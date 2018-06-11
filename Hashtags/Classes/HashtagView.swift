@@ -244,7 +244,6 @@ extension HashtagView {
         self.collectionView.reloadData()
         self.superview?.setNeedsLayout()
         self.superview?.layoutIfNeeded()
-
         resize()
     }
 
@@ -253,7 +252,6 @@ extension HashtagView {
         self.collectionView.reloadData()
         self.superview?.setNeedsLayout()
         self.superview?.layoutIfNeeded()
-        
         resize()
     }
 
@@ -262,7 +260,14 @@ extension HashtagView {
         self.collectionView.reloadData()
         self.superview?.setNeedsLayout()
         self.superview?.layoutIfNeeded()
-        
+        resize()
+    }
+    
+    open func removeTags() {
+        self.hashtags.removeAll()
+        self.collectionView.reloadData()
+        self.superview?.setNeedsLayout()
+        self.superview?.layoutIfNeeded()
         resize()
     }
 

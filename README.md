@@ -31,13 +31,23 @@ it, simply add the following line to your Podfile:
 pod 'Hashtags'
 ```
 
-## Usage
-
-You can use the Hashtags view either directly from the code, or through your Interface Builder.
+## 😏 Usage
 
 ### Basics
 
-####  With code:
+#### 1) Create a Hashtag
+
+```swift
+let tag = HashTag(word: "another", isRemovable: true)
+```
+
+The boolean `isRemovable` defines if the hashtag can be removed from the list, by displaying a  ❌button next to it.
+
+####  2) Create the view
+
+You can use the Hashtags view either directly from the code, or through your Interface Builder.
+
+#####  With code:
 
 ```swift
 var hashtags = HashtagView(frame: ...)
@@ -55,6 +65,20 @@ self.view.addSubview(hashtags)
 
 ####  With Interface builder:
 
+
+#### 3) Add hashtags to the view
+
+```swift
+let hashtag = ...
+hashtagsView.addTag(tag: tag)
+```
+
+```swift
+func addTag(tag: HashTag)
+func addTags(tags: [HashTag])
+func removeTag(tag: HashTag)
+func removeTags()
+```
 
 ### Dynamic height
 
@@ -106,7 +130,7 @@ You can change style attributes of the view and the design of the hashtags thems
 
 - `horizontalTagSpacing`
 
- - `horizontalTagSpacing`
+- `horizontalTagSpacing`
 
 - `tagPadding`
 
