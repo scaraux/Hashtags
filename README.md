@@ -41,7 +41,7 @@ pod 'Hashtags'
 let tag = HashTag(word: "another", isRemovable: true)
 ```
 
-The boolean `isRemovable` defines if the hashtag can be removed from the list, by displaying a  ❌button next to it.
+The boolean `isRemovable` defines if the hashtag can be removed from the list, by displaying a button next to it.
 
 ####  2) Create the view
 
@@ -73,6 +73,8 @@ let hashtag = ...
 hashtagsView.addTag(tag: tag)
 ```
 
+You can add one, or multiples hashtags at the time. Same if you want to remove them.
+
 ```swift
 func addTag(tag: HashTag)
 func addTags(tags: [HashTag])
@@ -96,7 +98,8 @@ UIViewController: HashtagsViewResizingDelegate {
 
 #### Example:
 
-One good way to expand the height of your `HashtagsView`  is to set a height constraint on it (from the code or interface builder). Then you can modify the `constant` property of the constraint when the view needs to be expanded :
+One good way to expand the height of your `HashtagsView`  when needed is to set a height constraint on it (from the code or interface builder). Then you can modify the `constant` property of the constraint when the view needs to be expanded. Add an animation and you got it !
+
 
 ```swift
 UIViewController: HashtagsViewResizingDelegate {
@@ -118,13 +121,14 @@ UIViewController: HashtagsViewResizingDelegate {
 ##  🎨 Customization
 
 ### Appearance
+
 You can change style attributes of the view and the design of the hashtags themselves.
 
-- `containerPaddingLeft`
+- `containerPaddingLeft`
 
 - `containerPaddingRight`
 
-- `containerPaddingTop`
+- `containerPaddingTop`
 
 - `containerPaddingBottom`
 
@@ -138,11 +142,11 @@ You can change style attributes of the view and the design of the hashtags thems
 
 - `tagBackgroundColor`
 
-- `tagTextColor`
+- `tagTextColor`
 
-- `removeButtonSize`
+- `removeButtonSize`
 
-- `removeButtonSpacing`
+-  `removeButtonSpacing`
 
 
 ## 👱 Author
