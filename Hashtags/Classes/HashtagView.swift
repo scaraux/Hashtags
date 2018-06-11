@@ -8,18 +8,20 @@
 
 import UIKit
 
-// MARK: Class
+// MARK: Resising Delegate
 
-public enum ResizeMode {
-    case manual
-    case expandable
-    case wrap
+public protocol HashtagsViewResizingDelegate {
+    func viewShouldResizeTo(size: CGSize)
 }
+
+// MARK: Class
 
 @IBDesignable
 open class HashtagView: UIView {
     
     private var sizingLabel = UILabel(frame: .zero)
+    
+    private var lastDimension: CGSize?
     
     private var originalHeight: CGFloat?
     
@@ -33,26 +35,7 @@ open class HashtagView: UIView {
     
     public var hashtags: [HashTag] = []
     
-    open var resizeMode: ResizeMode = .expandable
-    
-    @IBOutlet
-    open weak var height: NSLayoutConstraint?
-
-    @IBInspectable
-    open var animationDuration: TimeInterval = 0.4
-
-    @IBInspectable
-    open var shouldBeHiddenWhenEmpty: Bool = true
-
-    @IBInspectable
-    open var animateViewHeightChanged: Bool = true
-    
-    @IBInspectable
-    open var viewBackgroundColor: UIColor? {
-        didSet {
-            self.backgroundColor = self.viewBackgroundColor
-        }
-    }
+    public var resizingDelegate: HashtagsViewResizingDelegate?
 
     @IBInspectable
     open var cornerRadius: CGFloat = 5.0 {
@@ -60,8 +43,7 @@ open class HashtagView: UIView {
             self.layer.cornerRadius = self.cornerRadius
         }
     }
-    
-    
+
     // MARK: Container padding (insets)
     
     @IBInspectable
@@ -95,48 +77,52 @@ open class HashtagView: UIView {
     // MARK: Hashtag cell padding
     
     @IBInspectable
-    open var hashtagPaddingLeft: CGFloat = 5.0 {
+    open var tagPadding: CGFloat = 5.0 {
         didSet {
-            self.configuration.paddingLeft = self.hashtagPaddingLeft
+            self.configuration.paddingLeft = self.tagPadding
+            self.configuration.paddingTop = self.tagPadding
+            self.configuration.paddingBottom = self.tagPadding
+            self.configuration.paddingRight = self.tagPadding
             self.collectionView.reloadData()
         }
     }
     
     @IBInspectable
-    open var hashtagPaddingRight: CGFloat = 5.0 {
+    open var tagCornerRadius: CGFloat = 5.0 {
         didSet {
-            self.configuration.paddingRight = self.hashtagPaddingRight
+            self.configuration.cornerRadius = self.tagCornerRadius
             self.collectionView.reloadData()
         }
     }
     
     @IBInspectable
-    open var hashtagPaddingTop: CGFloat = 5.0 {
+    open var tagBackgroundColor: UIColor = .lightGray {
         didSet {
-            self.configuration.paddingTop = self.hashtagPaddingTop
+            self.configuration.backgroundColor = self.tagBackgroundColor
             self.collectionView.reloadData()
         }
     }
     
     @IBInspectable
-    open var hashtagPaddingBottom: CGFloat = 5.0 {
+    open var tagTextColor: UIColor = .white {
         didSet {
-            self.configuration.paddingBottom = self.hashtagPaddingBottom
+            self.configuration.textColor = self.tagTextColor
             self.collectionView.reloadData()
         }
     }
     
+    
     @IBInspectable
-    open var hashtagCloseButtonSize: CGFloat = 10.0 {
+    open var removeButtonSize: CGFloat = 10.0 {
         didSet {
-            self.configuration.closeIconSize = self.hashtagCloseButtonSize
+            self.configuration.removeButtonSize = self.removeButtonSize
             self.collectionView.reloadData()
         }
     }
     @IBInspectable
-    open var hashtagCloseButtonSpacing: CGFloat = 5.0 {
+    open var removeButtonSpacing: CGFloat = 5.0 {
         didSet {
-            self.configuration.closeIconSpacing = self.hashtagCloseButtonSpacing
+            self.configuration.removeButtonSpacing = self.removeButtonSpacing
             self.collectionView.reloadData()
         }
     }
@@ -159,7 +145,7 @@ open class HashtagView: UIView {
     
     // MARK: Constructors
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
@@ -175,8 +161,6 @@ open class HashtagView: UIView {
     
     override open func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        self.shouldBeHiddenWhenEmpty = false
-        self.animateViewHeightChanged = false
         self.addTag(tag: HashTag(word: "hashtag"))
         self.addTag(tag: HashTag(word: "RemovableHashtag", isRemovable: true))
     }
@@ -186,27 +170,30 @@ open class HashtagView: UIView {
         collectionView.frame = self.bounds
     }
 
+    func makeDefaultConfiguration() {
+        
+        let configuration = HashtagConfiguration()
+        
+        configuration.paddingLeft = self.tagPadding
+        configuration.paddingRight = self.tagPadding
+        configuration.paddingTop = self.tagPadding
+        configuration.paddingBottom = self.tagPadding
+        configuration.removeButtonSize = self.removeButtonSize
+        configuration.removeButtonSpacing = self.removeButtonSpacing
+        configuration.backgroundColor = self.tagBackgroundColor
+        configuration.cornerRadius = self.tagCornerRadius
+        configuration.textColor = self.tagTextColor
+        
+        self.configuration = configuration
+    }
+    
     func setup() {
-        self.configuration.paddingLeft = self.hashtagPaddingLeft
-        self.configuration.paddingRight = self.hashtagPaddingRight
-        self.configuration.paddingTop = self.hashtagPaddingTop
-        self.configuration.paddingBottom = self.hashtagPaddingBottom
-        self.configuration.closeIconSize = self.hashtagCloseButtonSize
-        self.configuration.closeIconSpacing = self.hashtagCloseButtonSpacing
+        
+        makeDefaultConfiguration()
         
         self.clipsToBounds = true
-        
-        if self.height == nil {
-            self.height = self.heightAnchor.constraint(equalToConstant: self.bounds.height)
-            self.height!.isActive = true
-        }
-        
-        if self.resizeMode == .wrap {
-            self.height?.constant = 0.0
-        }
-        
-        self.originalHeight = self.height!.constant
-        
+        self.layer.cornerRadius = self.cornerRadius
+
         let alignedFlowLayout = AlignedCollectionViewFlowLayout(horizontalAlignment: .left, verticalAlignment: .top)
         alignedFlowLayout.minimumLineSpacing = self.horizontalTagSpacing
         alignedFlowLayout.minimumInteritemSpacing = self.verticalTagSpacing
@@ -215,11 +202,12 @@ open class HashtagView: UIView {
                                                       bottom: self.containerPaddingBottom,
                                                       right: self.containerPaddingRight)
 
+        self.collectionView.showsVerticalScrollIndicator = false
+        self.collectionView.showsHorizontalScrollIndicator = false
         self.collectionView.collectionViewLayout = alignedFlowLayout
-
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        self.collectionView.backgroundColor = self.backgroundColor
+        self.collectionView.backgroundColor = UIColor.clear
         self.collectionView.isScrollEnabled = false
         
         self.collectionView.register(HashtagCollectionViewCell.self,
@@ -232,29 +220,20 @@ open class HashtagView: UIView {
     }
     
     func resize() {
-        let contentHeight = self.collectionView.collectionViewLayout.collectionViewContentSize.height
-        
-        if self.resizeMode == .expandable {
-            if self.height!.constant < contentHeight {
-                self.height!.constant = contentHeight
-            } else if contentHeight > self.originalHeight! {
-                self.height!.constant = contentHeight
-            }
-        }
-        else if self.resizeMode == .wrap {
-            self.height!.constant = contentHeight
-        }
-        else {
+        guard let delegate = self.resizingDelegate else {
             return
         }
         
-        if self.animateViewHeightChanged {
-            UIView.animate(withDuration: self.animationDuration) {
-                self.superview?.layoutIfNeeded()
+        let contentSize = self.collectionView.collectionViewLayout.collectionViewContentSize
+        
+        if self.lastDimension != nil {
+            if lastDimension!.height != contentSize.height {
+               delegate.viewShouldResizeTo(size: contentSize)
             }
         } else {
-            self.superview?.layoutIfNeeded()
+            delegate.viewShouldResizeTo(size: contentSize)
         }
+        self.lastDimension = contentSize
     }
 }
 
@@ -331,14 +310,14 @@ extension HashtagView: UICollectionViewDelegateFlowLayout {
         var calculatedHeight = CGFloat()
         var calculatedWidth = CGFloat()
         
-        calculatedHeight = textDimensions.height + 6
+        calculatedHeight = configuration.paddingTop + textDimensions.height + configuration.paddingBottom
 
         if hashtag.isRemovable {
             calculatedWidth =
                 configuration.paddingLeft
                 + textDimensions.width
-                + configuration.closeIconSpacing
-                + configuration.closeIconSize
+                + configuration.removeButtonSpacing
+                + configuration.removeButtonSize
                 + configuration.paddingRight
         } else {
             calculatedWidth = configuration.paddingLeft + textDimensions.width + configuration.paddingRight

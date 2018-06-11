@@ -5,13 +5,24 @@
 [![License](https://img.shields.io/cocoapods/l/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
 [![Platform](https://img.shields.io/cocoapods/p/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
 
-## Example
+
+Hashtags is a Swift library for displaying, customizing and interacting with a list of #hashtags
+
+## :star: Features
+- Simplistic and easy to use
+- Fully customizable
+- Dynamic height
+
+
+##  📲 Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
+## 📋 Requirements
 
-## Installation
+Hashtags requires iOS 9 and Swift 4
+
+##  📦 Installation
 
 Hashtags is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -20,10 +31,100 @@ it, simply add the following line to your Podfile:
 pod 'Hashtags'
 ```
 
-## Author
+## Usage
 
-gottingoscar@gmail.com, gottingoscar@gmail.com
+You can use the Hashtags view either directly from the code, or through your Interface Builder.
 
-## License
+### Basics
+
+####  With code:
+
+```swift
+var hashtags = HashtagView(frame: ...)
+
+hashtags.backgroundColor = UIColor.lightGray
+hashtags.tagBackgroundColor = UIColor.blue
+hashtags.cornerRadius = 5.0
+hashtags.tagCornerRadius = 5.0
+hashtags.tagPadding = 5.0
+hashtags.horizontalTagSpacing = 7.0
+hashtags.verticalTagSpacing = 5.0
+
+self.view.addSubview(hashtags)
+```
+
+####  With Interface builder:
+
+
+### Dynamic height
+
+You may want to expand the size of your `HashtagView` when the hashtags exceed the actual size of the view.
+
+To do so, implement `HashtagsViewResizingDelegate` :
+
+```swift
+UIViewController: HashtagsViewResizingDelegate {
+	func viewShouldResizeTo(size: CGSize) {
+		// Your code here
+	}
+}
+```
+
+#### Example:
+
+One good way to expand the height of your `HashtagsView`  is to set a height constraint on it (from the code or interface builder). Then you can modify the `constant` property of the constraint when the view needs to be expanded :
+
+```swift
+UIViewController: HashtagsViewResizingDelegate {
+	func viewShouldResizeTo(size: CGSize) {
+		guard let constraint = self.heightConstraint else {
+			return
+		}
+		constraint.constant = size.height
+		UIView.animate(withDuration: 0.4) {
+			self.view.layoutIfNeeded()
+		}
+	}
+}
+```
+
+***NOTE:** If you are using interface builder, you might want to link your height constraint to your parent view with an `@IBOutlet`. Check our example project for more details.*
+
+
+##  🎨 Customization
+
+### Appearance
+You can change style attributes of the view and the design of the hashtags themselves.
+
+- `containerPaddingLeft`
+
+- `containerPaddingRight`
+
+- `containerPaddingTop`
+
+- `containerPaddingBottom`
+
+- `horizontalTagSpacing`
+
+ - `horizontalTagSpacing`
+
+- `tagPadding`
+
+- `tagCornerRadius`
+
+- `tagBackgroundColor`
+
+- `tagTextColor`
+
+- `removeButtonSize`
+
+- `removeButtonSpacing`
+
+
+## 👱 Author
+
+Oscar Gotting, gottingoscar@gmail.com
+
+## 🚔 License
 
 Hashtags is available under the MIT license. See the LICENSE file for more info.

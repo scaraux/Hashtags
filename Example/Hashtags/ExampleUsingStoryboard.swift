@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ExampleUsingStoryboard.swift
 //  Hashtags
 //
 //  Created by gottingoscar@gmail.com on 06/08/2018.
@@ -10,10 +10,10 @@ import UIKit
 import Hashtags
 
 fileprivate extension Selector {
-    static let onEditingChanged = #selector(ViewController.editingChanged(_:))
+    static let onEditingChanged = #selector(ExampleUsingStoryboard.editingChanged(_:))
 }
 
-class ViewController: UIViewController {
+class ExampleUsingStoryboard: UIViewController {
     
     struct Constants {
         static let minCharsForInput = 3
@@ -23,11 +23,20 @@ class ViewController: UIViewController {
     @IBOutlet weak var input: UITextField!
     @IBOutlet weak var hashtags: HashtagView!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hashtags.resizingDelegate = self
         self.input.delegate = self
         self.input.addTarget(self, action: Selector.onEditingChanged, for: .editingChanged)
+        
+        let tags = [HashTag(word: "this"),
+                    HashTag(word: "is", isRemovable: false),
+                    HashTag(word: "an", isRemovable: true),
+                    HashTag(word: "example", isRemovable: true)]
+        
+        self.hashtags.addTags(tags: tags)
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,7 +56,17 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITextFieldDelegate {
+extension ExampleUsingStoryboard: HashtagsViewResizingDelegate {
+    func viewShouldResizeTo(size: CGSize) {
+        self.heightConstraint.constant = size.height
+        
+        UIView.animate(withDuration: 0.4) {
+            self.view.layoutIfNeeded()
+        }
+    }
+}
+
+extension ExampleUsingStoryboard: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let text = textField.text else {
@@ -83,4 +102,3 @@ extension ViewController: UITextFieldDelegate {
         }
     }
 }
-

@@ -30,16 +30,16 @@ extension Array where Element: Equatable {
 
 open class HashTag: Equatable {
     
-    public static func == (lhs: HashTag, rhs: HashTag) -> Bool {
-        return lhs.text == rhs.text
-    }
+    open var text: String
+    open var isRemovable: Bool
+    open var configuration: HashtagConfiguration?
     
     public init(word: String, isRemovable: Bool = false) {
         self.text = word
         self.isRemovable = isRemovable
     }
     
-    open var text: String
-    open var isRemovable: Bool
-    open var configuration: HashtagConfiguration?
+    public static func == (lhs: HashTag, rhs: HashTag) -> Bool {
+        return lhs.text == rhs.text
+    }
 }
