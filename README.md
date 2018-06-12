@@ -68,7 +68,7 @@ self.view.addSubview(hashtags)
 Simply define a `UIView` and set its class to `HashtagsView`. You're all set.
 
 <p align="left">
-    <img src="ib-class-example.png" width="890" alt="Example Interface Builder"/>
+    <img src="Artwork/ib-class-example.png" width="890" alt="Example Interface Builder"/>
 </p>
 
 #### 3) Add hashtags to the view
@@ -156,7 +156,7 @@ You can change style attributes of the view and the design of the hashtags thems
 If you decided to define the view from Interface Builder, you have access to those values too.
 
 <p align="left">
-    <img src="ib-outlets-example.png" width="890" alt="Example Interface Builder"/>
+    <img src="Artwork/ib-outlets-example.png" width="890" alt="Example Interface Builder"/>
 </p>
 
 ## 👱 Author
