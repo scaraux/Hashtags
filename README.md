@@ -63,8 +63,15 @@ hashtags.verticalTagSpacing = 5.0
 self.view.addSubview(hashtags)
 ```
 
-####  With Interface builder:
+####  With Interface Builder:
 
+Simply define a `UIView` and set its class to `HashtagsView`. You're all set.
+
+```
+<p align="left">
+    <img src="ib-class-example.png" width="890" alt="Example Interface Builder"/>
+</p>
+```
 
 #### 3) Add hashtags to the view
 
@@ -148,6 +155,13 @@ You can change style attributes of the view and the design of the hashtags thems
 
 -  `removeButtonSpacing`
 
+If you decided to define the view from Interface Builder, you have access to those values too.
+
+```
+<p align="left">
+    <img src="ib-outlets-example.png" width="890" alt="Example Interface Builder"/>
+</p>
+```
 
 ## 👱 Author
 
