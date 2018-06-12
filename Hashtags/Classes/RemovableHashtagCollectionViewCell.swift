@@ -15,6 +15,8 @@ fileprivate extension Selector {
 
 open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
     
+    static let cellIdentifier = "RemovableHashtagCollectionViewCell"
+
     var paddingLeftConstraint: NSLayoutConstraint?
     var paddingRightConstraint: NSLayoutConstraint?
     var paddingTopConstraint: NSLayoutConstraint?
@@ -22,8 +24,6 @@ open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
     var removeButtonHeightConstraint: NSLayoutConstraint?
     var removeButtonWidthConstraint: NSLayoutConstraint?
     var removeButtonSpacingConstraint: NSLayoutConstraint?
-    
-    static let cellIdentifier = "RemovableHashtagCollectionViewCell"
     
     lazy var wordLabel : UILabel = {
         let lbl = UILabel()

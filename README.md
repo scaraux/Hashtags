@@ -38,10 +38,15 @@ pod 'Hashtags'
 #### 1) Create a Hashtag
 
 ```swift
-let tag = HashTag(word: "another", isRemovable: true)
+let tag = HashTag(word: "hashtag")
+let tag = HashTag(word: "hashtag", withHashSymbol: false)
+let tag = HashTag(word: "hashtag", withHashSymbol: true, isRemovable: true)
 ```
 
-The boolean `isRemovable` defines if the hashtag can be removed from the list, by displaying a button next to it.
+The boolean `isRemovable` defines if the hashtag can be removed from the list, by displaying a button next to it. The boolean `withHashSymbol` allows to automatically display a '#' symbol before the word.
+
+***NOTE**: By default, the hashtag will display the hash symbol and won't be removable.*
+
 
 ####  2) Create the view
 

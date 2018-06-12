@@ -22,7 +22,7 @@ class ExampleUsingStoryboard: UIViewController {
 
     @IBOutlet weak var input: UITextField!
     @IBOutlet weak var hashtags: HashtagView!
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var addButton: AddButton!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
@@ -30,6 +30,7 @@ class ExampleUsingStoryboard: UIViewController {
         self.hashtags.resizingDelegate = self
         self.input.delegate = self
         self.input.addTarget(self, action: Selector.onEditingChanged, for: .editingChanged)
+        self.addButton.setClickable(false)
         
         let tags = [HashTag(word: "this"),
                     HashTag(word: "is", isRemovable: false),
@@ -48,11 +49,9 @@ class ExampleUsingStoryboard: UIViewController {
             return
         }
         let hashtag = HashTag(word: text, isRemovable: true)
-        hashtags.addTag(tag: hashtag)
+        self.hashtags.addTag(tag: hashtag)
         
         self.input.text = ""
-        self.addButton.isEnabled = false
-        self.addButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.4)
     }
 }
 
@@ -94,11 +93,9 @@ extension ExampleUsingStoryboard: UITextFieldDelegate {
             return
         }
         if text.count >= Constants.minCharsForInput {
-            self.addButton.isEnabled = true
-            self.addButton.backgroundColor = UIColor.blue
+            self.addButton.setClickable(true)
         } else {
-            self.addButton.isEnabled = false
-            self.addButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.4)
+            self.addButton.setClickable(false)
         }
     }
 }

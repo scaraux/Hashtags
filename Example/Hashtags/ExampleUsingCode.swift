@@ -38,11 +38,7 @@ class ExampleUsingCode: UIViewController {
         return input
     }()
     
-    var addButton: UIButton = {
-        let button = UIButton(frame: .zero)
-        button.setTitle("Add", for: .normal)
-        return button
-    }()
+    var addButton = AddButton(frame: .zero)
     
     var heightConstraint: NSLayoutConstraint?
     
@@ -67,19 +63,27 @@ class ExampleUsingCode: UIViewController {
         self.hashtags.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20.0).isActive = true
         self.hashtags.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20.0).isActive = true
         self.hashtags.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100.0).isActive = true
-        // This constraint helps us resizing the Hashtags view when it needs to be expanded
+       
+        // This constraint helps us resizing the Hashtags view when it needs to be expanded //
         self.heightConstraint = self.hashtags.heightAnchor.constraint(equalToConstant: 50.0)
         self.heightConstraint?.isActive = true
+        // -------------------------------------------------------------------------------- //
         
+        // Constraints for input
         self.input.translatesAutoresizingMaskIntoConstraints = false
         self.input.delegate = self
         self.input.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20.0).isActive = true
         self.input.widthAnchor.constraint(equalToConstant: 200.0).isActive = true
-        self.input.topAnchor.constraint(equalTo: self.hashtags.bottomAnchor, constant: 20.0).isActive = true
+        self.input.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
+        self.input.topAnchor.constraint(equalTo: self.hashtags.bottomAnchor, constant: 10.0).isActive = true
         
+        //Constraints for add button
         self.addButton.translatesAutoresizingMaskIntoConstraints = false
         self.addButton.leadingAnchor.constraint(equalTo: self.input.trailingAnchor, constant: 6.0).isActive = true
+        self.addButton.widthAnchor.constraint(equalToConstant: 75.0).isActive = true
+        self.addButton.heightAnchor.constraint(equalTo: self.input.heightAnchor, multiplier: 1.0).isActive = true
         self.addButton.centerYAnchor.constraint(equalTo: self.input.centerYAnchor).isActive = true
+        self.addButton.setClickable(false)
         
         self.input.addTarget(self, action: Selector.onEditingChanged, for: .editingChanged)
         self.addButton.addTarget(self, action: Selector.onAddHashtag, for: .touchUpInside)
@@ -147,11 +151,9 @@ extension ExampleUsingCode: UITextFieldDelegate {
             return
         }
         if text.count >= Constants.minCharsForInput {
-            self.addButton.isEnabled = true
-            self.addButton.backgroundColor = UIColor.blue
+            self.addButton.setClickable(true)
         } else {
-            self.addButton.isEnabled = false
-            self.addButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.4)
+            self.addButton.setClickable(false)
         }
     }
 }

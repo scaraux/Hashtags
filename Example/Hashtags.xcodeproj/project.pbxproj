@@ -14,6 +14,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		72BA612A9AE6C22A63D39204 /* Pods_Hashtags_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21CA60D527B3669343D5110 /* Pods_Hashtags_Example.framework */; };
+		D036E37220CF5284003F77F3 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D036E37120CF5284003F77F3 /* AddButton.swift */; };
 		D0D1CB6520CDDDAD006D7CDF /* ExampleUsingCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1CB6420CDDDAD006D7CDF /* ExampleUsingCode.swift */; };
 		D0D1CB6720CDDFAF006D7CDF /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1CB6620CDDFAF006D7CDF /* Home.swift */; };
 		FF8F4AA8ACB6D4FCF62B29B7 /* Pods_Hashtags_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 930F33F0B3226103CB335D5F /* Pods_Hashtags_Tests.framework */; };
@@ -49,6 +50,7 @@
 		930F33F0B3226103CB335D5F /* Pods_Hashtags_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hashtags_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C21CA60D527B3669343D5110 /* Pods_Hashtags_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hashtags_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD21704F302ED2D69FFEDF25 /* Pods-Hashtags_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hashtags_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hashtags_Tests/Pods-Hashtags_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		D036E37120CF5284003F77F3 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		D0D1CB6420CDDDAD006D7CDF /* ExampleUsingCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUsingCode.swift; sourceTree = "<group>"; };
 		D0D1CB6620CDDFAF006D7CDF /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +108,7 @@
 		607FACD21AFB9204008FA782 /* Example for Hashtags */ = {
 			isa = PBXGroup;
 			children = (
+				D036E37120CF5284003F77F3 /* AddButton.swift */,
 				D0D1CB6620CDDFAF006D7CDF /* Home.swift */,
 				D0D1CB6420CDDDAD006D7CDF /* ExampleUsingCode.swift */,
 				607FACD71AFB9204008FA782 /* ExampleUsingStoryboard.swift */,
@@ -381,6 +384,7 @@
 				607FACD81AFB9204008FA782 /* ExampleUsingStoryboard.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				D0D1CB6720CDDFAF006D7CDF /* Home.swift in Sources */,
+				D036E37220CF5284003F77F3 /* AddButton.swift in Sources */,
 				D0D1CB6520CDDDAD006D7CDF /* ExampleUsingCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

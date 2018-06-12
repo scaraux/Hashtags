@@ -32,11 +32,17 @@ open class HashTag: Equatable {
     
     open var text: String
     open var isRemovable: Bool
+    open var hasHashSymbol: Bool
     open var configuration: HashtagConfiguration?
     
-    public init(word: String, isRemovable: Bool = false) {
+    public init(word: String, withHashSymbol: Bool = true, isRemovable: Bool = false) {
         self.text = word
         self.isRemovable = isRemovable
+        self.hasHashSymbol = withHashSymbol
+        
+        if hasHashSymbol {
+            self.text = "#" + text
+        }
     }
     
     public static func == (lhs: HashTag, rhs: HashTag) -> Bool {

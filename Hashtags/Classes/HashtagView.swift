@@ -25,8 +25,6 @@ open class HashtagView: UIView {
     
     private var originalHeight: CGFloat?
     
-    private var configuration = HashtagConfiguration()
-
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
@@ -79,10 +77,6 @@ open class HashtagView: UIView {
     @IBInspectable
     open var tagPadding: CGFloat = 5.0 {
         didSet {
-            self.configuration.paddingLeft = self.tagPadding
-            self.configuration.paddingTop = self.tagPadding
-            self.configuration.paddingBottom = self.tagPadding
-            self.configuration.paddingRight = self.tagPadding
             self.collectionView.reloadData()
         }
     }
@@ -90,7 +84,6 @@ open class HashtagView: UIView {
     @IBInspectable
     open var tagCornerRadius: CGFloat = 5.0 {
         didSet {
-            self.configuration.cornerRadius = self.tagCornerRadius
             self.collectionView.reloadData()
         }
     }
@@ -98,7 +91,6 @@ open class HashtagView: UIView {
     @IBInspectable
     open var tagBackgroundColor: UIColor = .lightGray {
         didSet {
-            self.configuration.backgroundColor = self.tagBackgroundColor
             self.collectionView.reloadData()
         }
     }
@@ -106,7 +98,6 @@ open class HashtagView: UIView {
     @IBInspectable
     open var tagTextColor: UIColor = .white {
         didSet {
-            self.configuration.textColor = self.tagTextColor
             self.collectionView.reloadData()
         }
     }
@@ -115,14 +106,12 @@ open class HashtagView: UIView {
     @IBInspectable
     open var removeButtonSize: CGFloat = 10.0 {
         didSet {
-            self.configuration.removeButtonSize = self.removeButtonSize
             self.collectionView.reloadData()
         }
     }
     @IBInspectable
     open var removeButtonSpacing: CGFloat = 5.0 {
         didSet {
-            self.configuration.removeButtonSpacing = self.removeButtonSpacing
             self.collectionView.reloadData()
         }
     }
@@ -130,7 +119,7 @@ open class HashtagView: UIView {
     // MARK: Hashtags cell margins
     
     @IBInspectable
-    open var horizontalTagSpacing: CGFloat = 7.0 {
+    open var horizontalTagSpacing: CGFloat = 5.0 {
         didSet {
             setup()
         }
@@ -161,7 +150,9 @@ open class HashtagView: UIView {
     
     override open func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
+
         self.addTag(tag: HashTag(word: "hashtag"))
+        self.addTag(tag: HashTag(word: "hashtag", withHashSymbol: true, isRemovable: false))
         self.addTag(tag: HashTag(word: "RemovableHashtag", isRemovable: true))
     }
 
@@ -170,7 +161,7 @@ open class HashtagView: UIView {
         collectionView.frame = self.bounds
     }
 
-    func makeDefaultConfiguration() {
+    func makeConfiguration() -> HashtagConfiguration {
         
         let configuration = HashtagConfiguration()
         
@@ -184,12 +175,10 @@ open class HashtagView: UIView {
         configuration.cornerRadius = self.tagCornerRadius
         configuration.textColor = self.tagTextColor
         
-        self.configuration = configuration
+        return configuration
     }
     
     func setup() {
-        
-        makeDefaultConfiguration()
         
         self.clipsToBounds = true
         self.layer.cornerRadius = self.cornerRadius
@@ -294,14 +283,14 @@ extension HashtagView: UICollectionViewDelegate, UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RemovableHashtagCollectionViewCell.cellIdentifier,
                                                           for: indexPath) as! RemovableHashtagCollectionViewCell
             
-            cell.configureWithTag(tag: hashtag, configuration: self.configuration)
             cell.delegate = self
+            cell.configureWithTag(tag: hashtag, configuration: makeConfiguration())
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HashtagCollectionViewCell.cellIdentifier,
                                                       for: indexPath) as! HashtagCollectionViewCell
 
-        cell.configureWithTag(tag: hashtag)
+        cell.configureWithTag(tag: hashtag, configuration: makeConfiguration())
         return cell
     }
 }
@@ -314,6 +303,8 @@ extension HashtagView: UICollectionViewDelegateFlowLayout {
         
         var calculatedHeight = CGFloat()
         var calculatedWidth = CGFloat()
+        
+        let configuration = makeConfiguration()
         
         calculatedHeight = configuration.paddingTop + textDimensions.height + configuration.paddingBottom
 
