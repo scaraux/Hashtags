@@ -41,7 +41,7 @@ pod 'Hashtags'
 let tag = HashTag(word: "another", isRemovable: true)
 ```
 
-The boolean `isRemovable` defines if the hashtag can be removed from the list, by displaying a button next to it.
+The boolean `isRemovable` defines if the hashtag can be removed from the list, by displaying a  ❌button next to it.
 
 ####  2) Create the view
 
@@ -63,13 +63,8 @@ hashtags.verticalTagSpacing = 5.0
 self.view.addSubview(hashtags)
 ```
 
-####  With Interface Builder:
+####  With Interface builder:
 
-Simply define a `UIView` and set its class to `HashtagsView`. You're all set.
-
-<p align="left">
-    <img src="Artwork/ib-class-example.png" width="890" alt="Example Interface Builder"/>
-</p>
 
 #### 3) Add hashtags to the view
 
@@ -77,8 +72,6 @@ Simply define a `UIView` and set its class to `HashtagsView`. You're all set.
 let hashtag = ...
 hashtagsView.addTag(tag: tag)
 ```
-
-You can add one, or multiples hashtags at the time. Same if you want to remove them.
 
 ```swift
 func addTag(tag: HashTag)
@@ -103,8 +96,7 @@ UIViewController: HashtagsViewResizingDelegate {
 
 #### Example:
 
-One good way to expand the height of your `HashtagsView`  when needed is to set a height constraint on it (from the code or interface builder). Then you can modify the `constant` property of the constraint when the view needs to be expanded. Add an animation and you got it !
-
+One good way to expand the height of your `HashtagsView`  is to set a height constraint on it (from the code or interface builder). Then you can modify the `constant` property of the constraint when the view needs to be expanded :
 
 ```swift
 UIViewController: HashtagsViewResizingDelegate {
@@ -129,13 +121,13 @@ UIViewController: HashtagsViewResizingDelegate {
 
 You can change style attributes of the view and the design of the hashtags themselves.
 
-- `containerPaddingLeft`
+- `containerPaddingLeft` 
 
-- `containerPaddingRight`
+- `containerPaddingRight` 
 
 - `containerPaddingTop`
 
-- `containerPaddingBottom`
+- `containerPaddingBottom` 
 
 - `horizontalTagSpacing`
 
@@ -145,19 +137,14 @@ You can change style attributes of the view and the design of the hashtags thems
 
 - `tagCornerRadius`
 
-- `tagBackgroundColor`
+- `tagBackgroundColor` 
 
 - `tagTextColor`
 
 - `removeButtonSize`
 
--  `removeButtonSpacing`
+- `removeButtonSpacing`
 
-If you decided to define the view from Interface Builder, you have access to those values too.
-
-<p align="left">
-    <img src="Artwork/ib-outlets-example.png" width="890" alt="Example Interface Builder"/>
-</p>
 
 ## 👱 Author
 
