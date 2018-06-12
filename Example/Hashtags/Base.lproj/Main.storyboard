@@ -99,20 +99,20 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hashtags, using Storyboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHt-4b-UPZ" userLabel="Title">
-                                <rect key="frame" x="48" y="85" width="280" height="30"/>
+                                <rect key="frame" x="48" y="114" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zjF-04-Yep" customClass="HashtagView" customModule="Hashtags">
-                                <rect key="frame" x="20" y="154.5" width="335" height="50.5"/>
+                                <rect key="frame" x="20" y="184" width="335" height="50.5"/>
                                 <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="0.797425176056338" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50.5" id="Y59-P7-rez"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="CzG-3H-Efx">
-                                <rect key="frame" x="20" y="215" width="281" height="30"/>
+                                <rect key="frame" x="20" y="244.5" width="281" height="30"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i2Y-Xt-j1r">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="30"/>
@@ -135,6 +135,9 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="281" id="bQB-eY-s6t"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.69411764705882351" blue="0.62745098039215685" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -145,7 +148,7 @@
                             <constraint firstItem="zjF-04-Yep" firstAttribute="top" secondItem="IHt-4b-UPZ" secondAttribute="bottom" constant="40" id="YDi-EZ-cw9"/>
                             <constraint firstItem="CzG-3H-Efx" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="aTG-Qp-PrN"/>
                             <constraint firstItem="zjF-04-Yep" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="cj3-gv-Fi0"/>
-                            <constraint firstItem="IHt-4b-UPZ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="21" id="is2-yA-BeQ"/>
+                            <constraint firstItem="IHt-4b-UPZ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="50" id="is2-yA-BeQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="f3I-Il-FJJ"/>

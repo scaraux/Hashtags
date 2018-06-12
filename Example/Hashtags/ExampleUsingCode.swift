@@ -62,7 +62,7 @@ class ExampleUsingCode: UIViewController {
         self.hashtags.translatesAutoresizingMaskIntoConstraints = false
         self.hashtags.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20.0).isActive = true
         self.hashtags.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20.0).isActive = true
-        self.hashtags.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100.0).isActive = true
+        self.hashtags.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50.0).isActive = true
        
         // This constraint helps us resizing the Hashtags view when it needs to be expanded //
         self.heightConstraint = self.hashtags.heightAnchor.constraint(equalToConstant: 50.0)
@@ -105,8 +105,7 @@ class ExampleUsingCode: UIViewController {
         hashtags.addTag(tag: hashtag)
         
         self.input.text = ""
-        self.addButton.isEnabled = false
-        self.addButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.4)
+        self.addButton.setClickable(false)
     }
 }
 

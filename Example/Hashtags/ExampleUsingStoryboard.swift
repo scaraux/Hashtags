@@ -52,6 +52,7 @@ class ExampleUsingStoryboard: UIViewController {
         self.hashtags.addTag(tag: hashtag)
         
         self.input.text = ""
+        self.addButton.setClickable(false)
     }
 }
 

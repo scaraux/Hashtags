@@ -110,6 +110,9 @@ UIViewController: HashtagsViewResizingDelegate {
 
 One good way to expand the height of your `HashtagsView`  when needed is to set a height constraint on it (from the code or interface builder). Then you can modify the `constant` property of the constraint when the view needs to be expanded. Add an animation and you got it !
 
+<p align="left">
+    <img src="Artwork/demo-dynamic.gif" width="300" alt="Example dynamic height"/>
+</p>
 
 ```swift
 UIViewController: HashtagsViewResizingDelegate {
