@@ -5,6 +5,10 @@
 [![License](https://img.shields.io/cocoapods/l/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
 [![Platform](https://img.shields.io/cocoapods/p/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
 
+<p align="center">
+    <img src="Artwork/hashtags-main-image.png" width="300" alt="Hashtags Logo"/>
+</p>
+
 
 Hashtags is a Swift library for displaying, customizing and interacting with a list of #hashtags
 
