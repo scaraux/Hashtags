@@ -6,7 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
 
 <p align="center">
-    <img src="Artwork/hashtags-logo.png" width="300" alt="Hashtags Logo"/>
+    <img src="Artwork/hashtags-logo.png" width="500" alt="Hashtags Logo"/>
 </p>
 
 
