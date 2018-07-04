@@ -160,6 +160,9 @@ open class HashtagView: UIView {
         self.layoutIfNeeded()
         
         var size = self.collectionView.collectionViewLayout.collectionViewContentSize
+        
+        size.width = size.width + self.containerPaddingLeft + self.containerPaddingRight
+        size.height = size.height + self.containerPaddingTop + self.containerPaddingBottom
 
         if size.width == 0 || size.height == 0 {
             size = CGSize(width: 100, height:44)
