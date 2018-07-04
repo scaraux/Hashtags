@@ -156,6 +156,17 @@ open class HashtagView: UIView {
         self.addTag(tag: HashTag(word: "RemovableHashtag", isRemovable: true))
     }
 
+    open override var intrinsicContentSize: CGSize {
+        self.layoutIfNeeded()
+        
+        var size = self.collectionView.collectionViewLayout.collectionViewContentSize
+
+        if size.width == 0 || size.height == 0 {
+            size = CGSize(width: 100, height:44)
+        }
+        return size
+    }
+    
     override open func layoutSubviews() {
         super.layoutSubviews()
         collectionView.frame = self.bounds
@@ -233,6 +244,8 @@ extension HashtagView {
         self.collectionView.reloadData()
         self.superview?.setNeedsLayout()
         self.superview?.layoutIfNeeded()
+        self.invalidateIntrinsicContentSize()
+
         resize()
     }
 
@@ -241,6 +254,7 @@ extension HashtagView {
         self.collectionView.reloadData()
         self.superview?.setNeedsLayout()
         self.superview?.layoutIfNeeded()
+        self.invalidateIntrinsicContentSize()
         resize()
     }
 
@@ -249,6 +263,7 @@ extension HashtagView {
         self.collectionView.reloadData()
         self.superview?.setNeedsLayout()
         self.superview?.layoutIfNeeded()
+        self.invalidateIntrinsicContentSize()
         resize()
     }
     
@@ -257,6 +272,7 @@ extension HashtagView {
         self.collectionView.reloadData()
         self.superview?.setNeedsLayout()
         self.superview?.layoutIfNeeded()
+        self.invalidateIntrinsicContentSize()
         resize()
     }
 
