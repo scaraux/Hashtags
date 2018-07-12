@@ -27,8 +27,9 @@ open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
     
     lazy var wordLabel : UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont.systemFont(ofSize: 14)
         lbl.textColor = UIColor.white
+        lbl.textAlignment = .center
+        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
@@ -36,6 +37,7 @@ open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
         let btn = UIButton()
         let bundle = Bundle(for: RemovableHashtagCollectionViewCell.self)
         let removeIcon = UIImage(named: "close", in: bundle, compatibleWith: nil)!
+        btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setImage(removeIcon, for: .normal)
         btn.imageView?.contentMode = .scaleAspectFit
         btn.imageView?.tintColor = UIColor.black.withAlphaComponent(0.9)
@@ -57,13 +59,9 @@ open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
     
     private func setup() {
         self.clipsToBounds = true
-        self.wordLabel.textAlignment = .center
         
         self.addSubview(wordLabel)
         self.addSubview(removeButton)
-        
-        self.wordLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.removeButton.translatesAutoresizingMaskIntoConstraints = false
         
         // Text Width
         self.wordLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 10).isActive = true
@@ -116,8 +114,10 @@ extension RemovableHashtagCollectionViewCell {
         self.removeButtonSpacingConstraint!.constant = configuration.removeButtonSpacing
         self.removeButtonWidthConstraint!.constant = configuration.removeButtonSize
         
-        self.backgroundColor = configuration.backgroundColor
-        self.wordLabel.textColor = configuration.textColor
         self.layer.cornerRadius = configuration.cornerRadius
+        self.backgroundColor = configuration.backgroundColor
+        
+        self.wordLabel.textColor = configuration.textColor
+        self.wordLabel.font = UIFont.systemFont(ofSize: configuration.textSize)
     }
 }

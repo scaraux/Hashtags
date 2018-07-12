@@ -20,8 +20,9 @@ open class HashtagCollectionViewCell: UICollectionViewCell {
     
     lazy var wordLabel : UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont.systemFont(ofSize: 14)
         lbl.textColor = UIColor.white
+        lbl.textAlignment = .center
+        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
@@ -39,12 +40,9 @@ open class HashtagCollectionViewCell: UICollectionViewCell {
     
     open func setup() {
         self.clipsToBounds = true
-        self.wordLabel.textAlignment = .center
         
         self.addSubview(wordLabel)
         
-        self.wordLabel.translatesAutoresizingMaskIntoConstraints = false
-
         // Padding left
         self.paddingLeftConstraint = self.wordLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor)
         self.paddingLeftConstraint!.isActive = true
@@ -59,6 +57,11 @@ open class HashtagCollectionViewCell: UICollectionViewCell {
         self.paddingRightConstraint!.isActive = true
     }
     
+    open override func prepareForInterfaceBuilder() {
+        self.wordLabel.text = ""
+        super.prepareForInterfaceBuilder()
+    }
+    
     open func configureWithTag(tag: HashTag, configuration: HashtagConfiguration) {
         self.hashtag = tag
         wordLabel.text = tag.text
@@ -68,8 +71,10 @@ open class HashtagCollectionViewCell: UICollectionViewCell {
         self.paddingBottomConstraint!.constant = -1 * configuration.paddingBottom
         self.paddingRightConstraint!.constant = -1 * configuration.paddingRight
 
-        self.backgroundColor = configuration.backgroundColor
-        self.wordLabel.textColor = configuration.textColor
         self.layer.cornerRadius = configuration.cornerRadius
+        self.backgroundColor = configuration.backgroundColor
+        
+        self.wordLabel.textColor = configuration.textColor
+        self.wordLabel.font = UIFont.systemFont(ofSize: configuration.textSize)
     }
 }

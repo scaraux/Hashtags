@@ -75,7 +75,28 @@ open class HashtagView: UIView {
     // MARK: Hashtag cell padding
     
     @IBInspectable
-    open var tagPadding: CGFloat = 5.0 {
+    open var tagPaddingLeft: CGFloat = 5.0 {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    @IBInspectable
+    open var tagPaddingRight: CGFloat = 5.0 {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    @IBInspectable
+    open var tagPaddingTop: CGFloat = 5.0 {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    @IBInspectable
+    open var tagPaddingBottom: CGFloat = 5.0 {
         didSet {
             self.collectionView.reloadData()
         }
@@ -83,6 +104,13 @@ open class HashtagView: UIView {
     
     @IBInspectable
     open var tagCornerRadius: CGFloat = 5.0 {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    @IBInspectable
+    open var textSize: CGFloat = 14.0 {
         didSet {
             self.collectionView.reloadData()
         }
@@ -179,14 +207,15 @@ open class HashtagView: UIView {
         
         let configuration = HashtagConfiguration()
         
-        configuration.paddingLeft = self.tagPadding
-        configuration.paddingRight = self.tagPadding
-        configuration.paddingTop = self.tagPadding
-        configuration.paddingBottom = self.tagPadding
+        configuration.paddingLeft = self.tagPaddingLeft
+        configuration.paddingRight = self.tagPaddingRight
+        configuration.paddingTop = self.tagPaddingTop
+        configuration.paddingBottom = self.tagPaddingBottom
         configuration.removeButtonSize = self.removeButtonSize
         configuration.removeButtonSpacing = self.removeButtonSpacing
         configuration.backgroundColor = self.tagBackgroundColor
         configuration.cornerRadius = self.tagCornerRadius
+        configuration.textSize = self.textSize
         configuration.textColor = self.tagTextColor
         
         return configuration
@@ -318,24 +347,16 @@ extension HashtagView: UICollectionViewDelegateFlowLayout {
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let hashtag: HashTag = self.hashtags[indexPath.item]
-        let textDimensions = hashtag.text.sizeOfString(usingFont: UIFont.systemFont(ofSize: 14.0))
+        let wordSize = hashtag.text.sizeOfString(usingFont: UIFont.systemFont(ofSize: self.textSize))
         
         var calculatedHeight = CGFloat()
         var calculatedWidth = CGFloat()
         
-        let configuration = makeConfiguration()
-        
-        calculatedHeight = configuration.paddingTop + textDimensions.height + configuration.paddingBottom
+        calculatedHeight = self.tagPaddingTop + wordSize.height + self.tagPaddingBottom
+        calculatedWidth = self.tagPaddingLeft + wordSize.width + self.tagPaddingRight + 1
 
         if hashtag.isRemovable {
-            calculatedWidth =
-                configuration.paddingLeft
-                + textDimensions.width
-                + configuration.removeButtonSpacing
-                + configuration.removeButtonSize
-                + configuration.paddingRight
-        } else {
-            calculatedWidth = configuration.paddingLeft + textDimensions.width + configuration.paddingRight
+            calculatedWidth += self.removeButtonSize + self.removeButtonSpacing
         }
         return CGSize(width: calculatedWidth, height: calculatedHeight)
     }

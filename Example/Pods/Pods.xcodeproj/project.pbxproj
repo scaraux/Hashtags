@@ -180,10 +180,10 @@
 			children = (
 				FA5134568B3BC5A71118F72922467239 /* AlignedCollectionViewFlowLayout.swift */,
 				F48E2D664A2FCDEA2F8DAF6102914C51 /* Hashtag.swift */,
-				95F42C3165D316074FB05E0FA6BAFAAB /* HashtagCollectionViewCell.swift */,
 				4AA42102FA954139B7922C03C6D7064D /* HashtagConfiguration.swift */,
 				5F29607F404AB073A4174BE9A79D3B1E /* HashtagView.swift */,
 				57E0DAE47A3DEDF332AEDD6917AD8E02 /* HashtagViewDelegate.swift */,
+				95F42C3165D316074FB05E0FA6BAFAAB /* HashtagCollectionViewCell.swift */,
 				B6483BCCE78F02383FC98B5B5049C12B /* RemovableHashtagCollectionViewCell.swift */,
 				978D40508EECA6DDB9879FE38BC13D71 /* Extensions */,
 				B04A22DE49076C1B1DBF7A4884E5B3EB /* Pod */,

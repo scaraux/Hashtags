@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Hashtags'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'A swift library for displaying hashtags'
   s.swift_version    = '4.0'
   s.description      = "Display a list of hashtags dynamically." 
