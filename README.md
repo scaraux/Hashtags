@@ -7,6 +7,10 @@
 
 <p align="center">
     <img src="Artwork/hashtags-logo.png" width="550" alt="Hashtags Logo"/>
+
+    <a href="https://cocoapods.org/pods/Hashtags">
+      <img src="https://img.shields.io/cocoapods/v/Hashtags.svg" alt="CocoaPods" />
+    </a>
 </p>
 
 
