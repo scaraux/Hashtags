@@ -4,11 +4,9 @@
 [![Version](https://img.shields.io/cocoapods/v/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
 [![License](https://img.shields.io/cocoapods/l/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
 [![Platform](https://img.shields.io/cocoapods/p/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
+[![Swift 4          support](https://img.shields.io/badge/Swift-4-orange.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
 
 <p align="center">
-    <a href="https://cocoapods.org/pods/Hashtags">
-      <img src="https://img.shields.io/cocoapods/v/Hashtags.svg" alt="CocoaPods"/>
-    </a>
     <img src="Artwork/hashtags-logo.png" width="550" alt="Hashtags Logo"/>
 </p>
 
