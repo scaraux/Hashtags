@@ -6,11 +6,10 @@
 [![Platform](https://img.shields.io/cocoapods/p/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
 
 <p align="center">
-    <img src="Artwork/hashtags-logo.png" width="550" alt="Hashtags Logo"/>
-
     <a href="https://cocoapods.org/pods/Hashtags">
-      <img src="https://img.shields.io/cocoapods/v/Hashtags.svg" alt="CocoaPods" />
+      <img src="https://img.shields.io/cocoapods/v/Hashtags.svg" alt="CocoaPods"/>
     </a>
+    <img src="Artwork/hashtags-logo.png" width="550" alt="Hashtags Logo"/>
 </p>
 
 
