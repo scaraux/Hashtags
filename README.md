@@ -1,6 +1,6 @@
 # Hashtags
 
-[![CI Status](https://img.shields.io/travis/gottingoscar@gmail.com/Hashtags.svg?style=flat)](https://travis-ci.org/gottingoscar@gmail.com/Hashtags)
+[![CIStatus](https://img.shields.io/travis/gottingoscar@gmail.com/Hashtags.svg?style=flat)](https://travis-ci.org/frenchfalcon/Hashtags)
 [![Version](https://img.shields.io/cocoapods/v/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
 [![License](https://img.shields.io/cocoapods/l/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
 [![Platform](https://img.shields.io/cocoapods/p/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
@@ -32,7 +32,7 @@ Hashtags is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Hashtags', :git => 'https://github.com/frenchfalcon/Hashtags'
+pod 'Hashtags'
 ```
 
 ## 😏 Usage
@@ -120,15 +120,15 @@ One good way to expand the height of your `HashtagsView`  when needed is to set 
 
 ```swift
 UIViewController: HashtagsViewResizingDelegate {
-	func viewShouldResizeTo(size: CGSize) {
-		guard let constraint = self.heightConstraint else {
-			return
-		}
-		constraint.constant = size.height
-		UIView.animate(withDuration: 0.4) {
-			self.view.layoutIfNeeded()
-		}
-	}
+    func viewShouldResizeTo(size: CGSize) {
+        guard let constraint = self.heightConstraint else {
+            return
+        }
+        constraint.constant = size.height
+        UIView.animate(withDuration: 0.4) {
+            self.view.layoutIfNeeded()
+        }
+    }
 }
 ```
 
@@ -141,30 +141,43 @@ UIViewController: HashtagsViewResizingDelegate {
 
 You can change style attributes of the view and the design of the hashtags themselves.
 
+##### Padding inside the whole view:
+
 - `containerPaddingLeft`
 
-- `containerPaddingRight` 
+- `containerPaddingRight`
 
 - `containerPaddingTop`
 
-- `containerPaddingBottom`
+- `containerPaddingBottom`
 
-- `horizontalTagSpacing`
+##### Padding inside each hashtag:
 
-- `horizontalTagSpacing`
+ - `tagPaddingLeft`
 
-- `tagPadding`
+ - `tagPaddingRight`
 
-- `tagCornerRadius`
+ - `tagPaddingTop`
 
-- `tagBackgroundColor` 
+ - `tagPaddingBottom`
 
-- `tagTextColor`
+##### Spacing between hashtags:
 
-- `removeButtonSize`
+ - `horizontalTagSpacing`
 
--  removeButtonSpacing`
+ - `verticalTagSpacing`
 
+##### Hashtags appearance:
+
+ - `tagCornerRadius`
+
+ - `tagBackgroundColor`
+
+ - `tagTextColor`
+
+ - `removeButtonSize`
+
+ - `removeButtonSpacing`
 
 If you decided to define the view from Interface Builder, you have access to those values too.  
 
