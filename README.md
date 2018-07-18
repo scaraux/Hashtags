@@ -1,6 +1,6 @@
 # Hashtags
 
-[![CIStatus](https://img.shields.io/travis/frenchfalcon/Hashtags.svg?style=flat)](https://travis-ci.org/frenchfalcon/Hashtags)
+<!-- [![CIStatus](https://img.shields.io/travis/frenchfalcon/Hashtags.svg?style=flat)](https://travis-ci.org/frenchfalcon/Hashtags) -->
 [![Version](https://img.shields.io/cocoapods/v/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
 [![License](https://img.shields.io/cocoapods/l/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
 [![Platform](https://img.shields.io/cocoapods/p/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
