@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Hashtags'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'A swift library for displaying hashtags'
   s.swift_version    = '4.0'
   s.description      = "Display a list of hashtags dynamically." 
@@ -28,5 +28,6 @@ Pod::Spec.new do |s|
   
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  
+  s.dependency 'AlignedCollectionViewFlowLayout', '~> 1.1.2'
 end

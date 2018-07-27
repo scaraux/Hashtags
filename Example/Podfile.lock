@@ -1,16 +1,23 @@
 PODS:
-  - Hashtags (0.1.0)
+  - AlignedCollectionViewFlowLayout (1.1.2)
+  - Hashtags (0.1.1):
+    - AlignedCollectionViewFlowLayout (~> 1.1.2)
 
 DEPENDENCIES:
   - Hashtags (from `../`)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AlignedCollectionViewFlowLayout
+
 EXTERNAL SOURCES:
   Hashtags:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  Hashtags: 3699cc33e428a3a4761ff467a7ac3ed9b72b456b
+  AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
+  Hashtags: e0840a63e76ef5eae56b3d80e7e3762a76064689
 
 PODFILE CHECKSUM: e75bac6d03a48c01f03069f41841168447bf3dd0
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

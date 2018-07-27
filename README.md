@@ -190,6 +190,9 @@ If you decided to define the view from Interface Builder, you have access to tho
 
 Oscar Gotting, gottingoscar@gmail.com
 
+## :heart_eyes: Credits
+
+[AlignedCollectionViewFlowLayout](https://github.com/mischa-hildebrand/AlignedCollectionViewFlowLayout) by [Mischa Hildebrand](https://github.com/mischa-hildebrand)
 ## 🚔 License
 
 Hashtags is available under the MIT license. See the LICENSE file for more info.
