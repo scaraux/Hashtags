@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/frenchfalcon/Hashtags'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'gottingoscar@gmail.com' => 'gottingoscar@gmail.com' }
+  s.author           = { 'Oscar Gotting' => 'https://twitter.com/scaraux' }
   s.source           = { :git => 'https://github.com/frenchfalcon/Hashtags.git', :tag => s.version.to_s }
 
 

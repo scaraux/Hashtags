@@ -188,7 +188,7 @@ If you decided to define the view from Interface Builder, you have access to tho
 
 ## 👱 Author
 
-Oscar Gotting, gottingoscar@gmail.com
+Oscar Gotting ([@Scaraux](https://twitter.com/scaraux))
 
 ## :heart_eyes: Credits
 
