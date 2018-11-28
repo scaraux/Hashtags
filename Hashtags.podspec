@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.summary          = 'A swift library for displaying hashtags'
   s.swift_version    = '4.0'
   s.description      = "Display a list of hashtags dynamically." 
-  s.homepage         = 'https://github.com/frenchfalcon/Hashtags'
+  s.homepage         = 'https://github.com/scaraux/Hashtags'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Oscar Gotting' => 'https://twitter.com/scaraux' }
