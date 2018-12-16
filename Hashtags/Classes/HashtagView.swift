@@ -15,6 +15,10 @@ public protocol HashtagsViewResizingDelegate {
     func viewShouldResizeTo(size: CGSize)
 }
 
+public protocol HasRemovedHashtagDelegate {
+    func hasRemovedHashtagDelegate(removed : Bool)
+}
+
 // MARK: Class
 
 @IBDesignable
@@ -35,7 +39,8 @@ open class HashtagView: UIView {
     public var hashtags: [HashTag] = []
     
     public var resizingDelegate: HashtagsViewResizingDelegate?
-
+    public var removedDelegate: HasRemovedHashtagDelegate?
+    
     @IBInspectable
     open var cornerRadius: CGFloat = 5.0 {
         didSet {
@@ -292,11 +297,15 @@ extension HashtagView {
     }
 
     open func removeTag(tag: HashTag) {
+        console.log("Did Remove at HashtagsView")
         self.hashtags.remove(object: tag)
         self.collectionView.reloadData()
         self.superview?.setNeedsLayout()
         self.superview?.layoutIfNeeded()
         self.invalidateIntrinsicContentSize()
+        if removedDelegate != nil {
+            removedDelegate?.hasRemovedHashtagDelegate(removed: true)
+        }
         resize()
     }
     
