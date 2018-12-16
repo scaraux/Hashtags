@@ -297,7 +297,7 @@ extension HashtagView {
     }
 
     open func removeTag(tag: HashTag) {
-        console.log("Did Remove at HashtagsView")
+        print("Did Remove at HashtagsView")
         self.hashtags.remove(object: tag)
         self.collectionView.reloadData()
         self.superview?.setNeedsLayout()
