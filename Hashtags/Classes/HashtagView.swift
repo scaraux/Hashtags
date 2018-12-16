@@ -13,6 +13,9 @@ import AlignedCollectionViewFlowLayout
 
 public protocol HashtagsViewResizingDelegate {
     func viewShouldResizeTo(size: CGSize)
+}
+
+public protocol HasRemovedHashtagDelegate {
     func hasRemovedHashtagDelegate(removed : Bool)
 }
 
@@ -36,7 +39,7 @@ open class HashtagView: UIView {
     public var hashtags: [HashTag] = []
     
     public var resizingDelegate: HashtagsViewResizingDelegate?
-    
+    public var removedDelegate: HasRemovedHashtagDelegate?
     
     @IBInspectable
     open var cornerRadius: CGFloat = 5.0 {
@@ -44,7 +47,7 @@ open class HashtagView: UIView {
             self.layer.cornerRadius = self.cornerRadius
         }
     }
-    
+
     // MARK: Container padding (insets)
     
     @IBInspectable
@@ -169,7 +172,7 @@ open class HashtagView: UIView {
         super.init(frame: frame)
         setup()
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -181,12 +184,12 @@ open class HashtagView: UIView {
     
     override open func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        
+
         self.addTag(tag: HashTag(word: "hashtag"))
         self.addTag(tag: HashTag(word: "hashtag", withHashSymbol: true, isRemovable: false))
         self.addTag(tag: HashTag(word: "RemovableHashtag", isRemovable: true))
     }
-    
+
     open override var intrinsicContentSize: CGSize {
         self.layoutIfNeeded()
         
@@ -194,7 +197,7 @@ open class HashtagView: UIView {
         
         size.width = size.width + self.containerPaddingLeft + self.containerPaddingRight
         size.height = size.height + self.containerPaddingTop + self.containerPaddingBottom
-        
+
         if size.width == 0 || size.height == 0 {
             size = CGSize(width: 100, height:44)
         }
@@ -205,7 +208,7 @@ open class HashtagView: UIView {
         super.layoutSubviews()
         collectionView.frame = self.bounds
     }
-    
+
     func makeConfiguration() -> HashtagConfiguration {
         
         let configuration = HashtagConfiguration()
@@ -228,7 +231,7 @@ open class HashtagView: UIView {
         
         self.clipsToBounds = true
         self.layer.cornerRadius = self.cornerRadius
-        
+
         let alignedFlowLayout = AlignedCollectionViewFlowLayout(horizontalAlignment: .left, verticalAlignment: .top)
         alignedFlowLayout.minimumLineSpacing = self.horizontalTagSpacing
         alignedFlowLayout.minimumInteritemSpacing = self.verticalTagSpacing
@@ -236,7 +239,7 @@ open class HashtagView: UIView {
                                                       left: self.containerPaddingLeft,
                                                       bottom: self.containerPaddingBottom,
                                                       right: self.containerPaddingRight)
-        
+
         self.collectionView.showsVerticalScrollIndicator = false
         self.collectionView.showsHorizontalScrollIndicator = false
         self.collectionView.collectionViewLayout = alignedFlowLayout
@@ -249,7 +252,7 @@ open class HashtagView: UIView {
                                      forCellWithReuseIdentifier: HashtagCollectionViewCell.cellIdentifier)
         self.collectionView.register(RemovableHashtagCollectionViewCell.self,
                                      forCellWithReuseIdentifier: RemovableHashtagCollectionViewCell.cellIdentifier)
-        
+       
         self.collectionView.removeFromSuperview()
         self.addSubview(self.collectionView)
     }
@@ -263,7 +266,7 @@ open class HashtagView: UIView {
         
         if self.lastDimension != nil {
             if lastDimension!.height != contentSize.height {
-                delegate.viewShouldResizeTo(size: contentSize)
+               delegate.viewShouldResizeTo(size: contentSize)
             }
         } else {
             delegate.viewShouldResizeTo(size: contentSize)
@@ -273,17 +276,17 @@ open class HashtagView: UIView {
 }
 
 extension HashtagView {
-    
+
     open func addTag(tag: HashTag) {
         self.hashtags.append(tag)
         self.collectionView.reloadData()
         self.superview?.setNeedsLayout()
         self.superview?.layoutIfNeeded()
         self.invalidateIntrinsicContentSize()
-        
+
         resize()
     }
-    
+
     open func addTags(tags: [HashTag]) {
         self.hashtags.append(contentsOf: tags)
         self.collectionView.reloadData()
@@ -292,18 +295,16 @@ extension HashtagView {
         self.invalidateIntrinsicContentSize()
         resize()
     }
-    
+
     open func removeTag(tag: HashTag) {
-        print("Did Remove at HashtagsView")
         self.hashtags.remove(object: tag)
         self.collectionView.reloadData()
         self.superview?.setNeedsLayout()
         self.superview?.layoutIfNeeded()
         self.invalidateIntrinsicContentSize()
-        guard let delegate = self.resizingDelegate else {
-            return
+        if removedDelegate != nil {
+            removedDelegate?.hasRemovedHashtagDelegate(removed: true)
         }
-        delegate.hasRemovedHashtagDelegate(removed: true)
         resize()
     }
     
@@ -315,7 +316,7 @@ extension HashtagView {
         self.invalidateIntrinsicContentSize()
         resize()
     }
-    
+
     open func getTags() -> [HashTag] {
         return self.hashtags
     }
@@ -331,7 +332,7 @@ extension HashtagView: UICollectionViewDelegate, UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.hashtags.count
     }
-    
+
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let hashtag: HashTag = self.hashtags[indexPath.item]
         
@@ -345,14 +346,14 @@ extension HashtagView: UICollectionViewDelegate, UICollectionViewDataSource {
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HashtagCollectionViewCell.cellIdentifier,
                                                       for: indexPath) as! HashtagCollectionViewCell
-        
+
         cell.configureWithTag(tag: hashtag, configuration: makeConfiguration())
         return cell
     }
 }
 
 extension HashtagView: UICollectionViewDelegateFlowLayout {
-    
+
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let hashtag: HashTag = self.hashtags[indexPath.item]
         let wordSize = hashtag.text.sizeOfString(usingFont: UIFont.systemFont(ofSize: self.textSize))
@@ -362,7 +363,7 @@ extension HashtagView: UICollectionViewDelegateFlowLayout {
         
         calculatedHeight = self.tagPaddingTop + wordSize.height + self.tagPaddingBottom
         calculatedWidth = self.tagPaddingLeft + wordSize.width + self.tagPaddingRight + 1
-        
+
         if hashtag.isRemovable {
             calculatedWidth += self.removeButtonSize + self.removeButtonSpacing
         }
