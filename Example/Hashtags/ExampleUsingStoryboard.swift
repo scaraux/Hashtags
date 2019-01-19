@@ -27,7 +27,7 @@ class ExampleUsingStoryboard: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hashtags.resizingDelegate = self
+        self.hashtags.delegate = self
         self.input.delegate = self
         self.input.addTarget(self, action: Selector.onEditingChanged, for: .editingChanged)
         self.addButton.setClickable(false)
@@ -56,7 +56,12 @@ class ExampleUsingStoryboard: UIViewController {
     }
 }
 
-extension ExampleUsingStoryboard: HashtagsViewResizingDelegate {
+extension ExampleUsingStoryboard: HashtagViewDelegate {
+    
+    func hashtagRemoved(hashtag: HashTag) {
+        print(hashtag.text + " Removed!")
+    }
+    
     func viewShouldResizeTo(size: CGSize) {
         self.heightConstraint.constant = size.height
         

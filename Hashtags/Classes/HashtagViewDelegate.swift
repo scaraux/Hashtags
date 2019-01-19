@@ -7,6 +7,7 @@
 
 import Foundation
 
-public protocol HashtagViewDelegate {
+public protocol HashtagViewDelegate: class {
     func hashtagRemoved(hashtag: HashTag)
+    func viewShouldResizeTo(size: CGSize)
 }

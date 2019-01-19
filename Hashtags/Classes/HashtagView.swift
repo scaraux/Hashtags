@@ -9,12 +9,6 @@
 import UIKit
 import AlignedCollectionViewFlowLayout
 
-// MARK: Resising Delegate
-
-public protocol HashtagsViewResizingDelegate {
-    func viewShouldResizeTo(size: CGSize)
-}
-
 // MARK: Class
 
 @IBDesignable
@@ -33,8 +27,8 @@ open class HashtagView: UIView {
     }()
     
     public var hashtags: [HashTag] = []
-    
-    public var resizingDelegate: HashtagsViewResizingDelegate?
+
+    public var delegate: HashtagViewDelegate?
 
     @IBInspectable
     open var cornerRadius: CGFloat = 5.0 {
@@ -253,7 +247,7 @@ open class HashtagView: UIView {
     }
     
     func resize() {
-        guard let delegate = self.resizingDelegate else {
+        guard let delegate = self.delegate else {
             return
         }
         
@@ -314,9 +308,10 @@ extension HashtagView {
     }
 }
 
-extension HashtagView: HashtagViewDelegate {
-    public func hashtagRemoved(hashtag: HashTag) {
+extension HashtagView: RemovableHashtagDelegate {
+    public func onRemoveHashtag(hashtag: HashTag) {
         removeTag(tag: hashtag)
+        self.delegate?.hashtagRemoved(hashtag: hashtag)
     }
 }
 

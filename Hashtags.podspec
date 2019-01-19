@@ -8,10 +8,10 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Hashtags'
-  s.version          = '0.1.2'
+  s.version          = '0.2.0'
   s.summary          = 'A swift library for displaying hashtags'
-  s.swift_version    = '4.0'
-  s.description      = "Display a list of hashtags dynamically." 
+  s.swift_version    = '4.2'
+  s.description      = "Display a list of hashtags dynamically."
   s.homepage         = 'https://github.com/scaraux/Hashtags'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -22,12 +22,12 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'Hashtags/Classes/**/*'
-  
+
   s.resources = 'Hashtags/Assets/**/*.{png,storyboard}'
   s.resource_bundle = { 'Hashtags' => 'Hashtags/Assets/*.png' }
-  
+
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  
+
   s.dependency 'AlignedCollectionViewFlowLayout', '~> 1.1.2'
 end

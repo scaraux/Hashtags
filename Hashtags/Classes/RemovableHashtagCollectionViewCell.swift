@@ -13,6 +13,10 @@ fileprivate extension Selector {
     static let removeButtonClicked: Selector = #selector(RemovableHashtagCollectionViewCell.onRemoveButtonClicked(_:))
 }
 
+public protocol RemovableHashtagDelegate: class {
+    func onRemoveHashtag(hashtag: HashTag)
+}
+
 open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
     
     static let cellIdentifier = "RemovableHashtagCollectionViewCell"
@@ -44,7 +48,8 @@ open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
         return btn
     }()
     
-    open var delegate: HashtagViewDelegate?
+    open weak var delegate: RemovableHashtagDelegate?
+    
     open var hashtag: HashTag?
 
     override init(frame: CGRect) {
@@ -99,7 +104,7 @@ open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
         guard let hashtag = self.hashtag else {
             return
         }
-        self.delegate?.hashtagRemoved(hashtag: hashtag)
+        self.delegate?.onRemoveHashtag(hashtag: hashtag)
     }
 }
 

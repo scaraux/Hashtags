@@ -53,7 +53,7 @@ class ExampleUsingCode: UIViewController {
     
     func setup() {
         
-        self.hashtags.resizingDelegate = self
+        self.hashtags.delegate = self
 
         self.view.addSubview(self.hashtags)
         self.view.addSubview(self.input)
@@ -109,7 +109,12 @@ class ExampleUsingCode: UIViewController {
     }
 }
 
-extension ExampleUsingCode: HashtagsViewResizingDelegate {
+extension ExampleUsingCode: HashtagViewDelegate {
+    
+    func hashtagRemoved(hashtag: HashTag) {
+        print(hashtag.text + " Removed!")
+    }
+    
     func viewShouldResizeTo(size: CGSize) {
         guard let constraint = self.heightConstraint else {
             return
