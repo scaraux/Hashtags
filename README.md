@@ -101,10 +101,15 @@ func removeTags()
 
 You may want to expand the size of your `HashtagView` when the hashtags exceed the actual size of the view.
 
-To do so, implement `HashtagsViewResizingDelegate` :
+To do so, implement `HashtagsViewDelegate` :
 
 ```swift
-UIViewController: HashtagsViewResizingDelegate {
+UIViewController: HashtagsViewDelegate {
+
+    func hashtagRemoved(hashtag: HashTag) {
+        // You code here
+    }
+
 	func viewShouldResizeTo(size: CGSize) {
 		// Your code here
 	}
@@ -120,7 +125,7 @@ One good way to expand the height of your `HashtagsView`  when needed is to set 
 </p>
 
 ```swift
-UIViewController: HashtagsViewResizingDelegate {
+UIViewController: HashtagsViewDelegate {
     func viewShouldResizeTo(size: CGSize) {
         guard let constraint = self.heightConstraint else {
             return
@@ -180,7 +185,7 @@ You can change style attributes of the view and the design of the hashtags thems
 
  - `removeButtonSpacing`
 
-If you decided to define the view from Interface Builder, you have access to those values too.  
+If you decided to define the view from Interface Builder, you have access to those values too.
 
 <p align="left">
     <img src="https://raw.githubusercontent.com/frenchfalcon/Hashtags/master/Artwork/ib-outlets-example.png" width="300px" alt="Example Interface Builder"/>
