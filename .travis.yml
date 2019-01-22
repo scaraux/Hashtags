@@ -10,6 +10,6 @@ before_install:
  - pod install --project-directory=Example
 
 script:
-- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/Hashtags.xcworkspace -scheme Hashtags-Example -sdk iphonesimulator11.4 ONLY_ACTIVE_ARCH=NO | xcpretty
+- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/Hashtags.xcworkspace -scheme Hashtags-Example -sdk iphonesimulator12.0 ONLY_ACTIVE_ARCH=NO | xcpretty
 # - set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/Hashtags.xcworkspace -scheme Hashtags-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.4' ONLY_ACTIVE_ARCH=NO | xcpretty
 - pod lib lint
