@@ -4,14 +4,14 @@
 [![Version](https://img.shields.io/cocoapods/v/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
 [![License](https://img.shields.io/cocoapods/l/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
 [![Platform](https://img.shields.io/cocoapods/p/Hashtags.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
-[![Swift 4          support](https://img.shields.io/badge/Swift-4-orange.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
+[![Swift 4.2 support](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://cocoapods.org/pods/Hashtags)
 
 <p align="center">
     <img src="Artwork/hashtags-logo.png" width="550" alt="Hashtags Logo"/>
 </p>
 
 
-Hashtags is a Swift library for displaying, customizing and interacting with a list of #hashtags
+Hashtags is an iOS library for displaying, customizing and interacting with a list of #hashtags, written in Swift
 
 ## :star: Features
 - Simplistic and easy to use
@@ -25,7 +25,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## 📋 Requirements
 
-Hashtags requires iOS 9 and Swift 4
+Hashtags requires iOS 9.0+
 
 ##  📦 Installation
 
@@ -107,18 +107,17 @@ To do so, implement `HashtagsViewDelegate` :
 UIViewController: HashtagsViewDelegate {
 
     func hashtagRemoved(hashtag: HashTag) {
-        // You code here
+        // Your code here
     }
-
-	func viewShouldResizeTo(size: CGSize) {
-		// Your code here
-	}
+    func viewShouldResizeTo(size: CGSize) {
+        // Your code here
+    }
 }
 ```
 
 #### Example:
 
-One good way to expand the height of your `HashtagsView`  when needed is to set a height constraint on it (from the code or interface builder). Then you can modify the `constant` property of the constraint when the view needs to be expanded. Add an animation and you got it !
+One simple way to expand the height of your `HashtagsView`  when needed is to set a height constraint on it (from the code or interface builder). Then you can modify the `constant` property of the constraint when the view needs to be expanded. Add an animation and you got it !
 
 <p align="left">
     <img src="Artwork/demo-dynamic.gif" loop=infinite width="300" alt="Example dynamic height"/>
