@@ -4,6 +4,7 @@
 
 language: swift
 osx_image: xcode10
+xcode_destination: platform=iOS Simulator,OS=12.0,name=iPhone X
 
 before_install:
  - gem install cocoapods
@@ -11,5 +12,4 @@ before_install:
 
 script:
 - set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/Hashtags.xcworkspace -scheme Hashtags-Example -sdk iphonesimulator12.0 ONLY_ACTIVE_ARCH=NO | xcpretty
-# - set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/Hashtags.xcworkspace -scheme Hashtags-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.4' ONLY_ACTIVE_ARCH=NO | xcpretty
 - pod lib lint
