@@ -1,6 +1,6 @@
 PODS:
   - AlignedCollectionViewFlowLayout (1.1.2)
-  - Hashtags (0.2.0):
+  - Hashtags (0.3.0):
     - AlignedCollectionViewFlowLayout (~> 1.1.2)
 
 DEPENDENCIES:
@@ -16,7 +16,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
-  Hashtags: 9e660e8abee27900f038c1c23a9e8847edab6c0e
+  Hashtags: 24b5d2e105aa695d21509a2fa472ff39cedef0b8
 
 PODFILE CHECKSUM: e75bac6d03a48c01f03069f41841168447bf3dd0
 

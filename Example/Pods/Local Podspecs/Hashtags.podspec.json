@@ -1,6 +1,6 @@
 {
   "name": "Hashtags",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "summary": "A swift library for displaying hashtags",
   "swift_version": "4.2",
   "description": "Display a list of hashtags dynamically.",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/scaraux/Hashtags.git",
-    "tag": "0.2.0"
+    "tag": "0.3.0"
   },
   "platforms": {
     "ios": "9.0"
