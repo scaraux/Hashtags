@@ -26,6 +26,8 @@ class ExampleUsingCode: UIViewController {
         let hashtags = HashtagView(frame: CGRect(x: 0, y: 0, width: 0, height: 70.0))
         hashtags.cornerRadius = 5.0
         hashtags.tagCornerRadius = 5.0
+        hashtags.borderColor = .systemBlue
+        hashtags.borderWidth = 2
         hashtags.backgroundColor = UIColor(red: 238.0, green: 238.0, blue: 238.0, alpha: 0.0).withAlphaComponent(0.3)
         hashtags.tagBackgroundColor = UIColor.lightGray
         hashtags.tagTextColor = UIColor.white
