@@ -112,6 +112,20 @@ open class HashtagView: UIView {
     }
     
     @IBInspectable
+    open var borderWidth: CGFloat = 1.0 {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    @IBInspectable
+    open var borderColor: UIColor = .clear {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    @IBInspectable
     open var tagBackgroundColor: UIColor = .lightGray {
         didSet {
             self.collectionView.reloadData()
@@ -212,6 +226,8 @@ open class HashtagView: UIView {
         configuration.cornerRadius = self.tagCornerRadius
         configuration.textSize = self.textSize
         configuration.textColor = self.tagTextColor
+        configuration.borderColor = self.borderColor
+        configuration.borderWidth = self.borderWidth
         
         return configuration
     }

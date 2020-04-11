@@ -15,7 +15,9 @@ open class HashtagConfiguration {
     var removeButtonSize: CGFloat = 0.0
     var removeButtonSpacing: CGFloat = 0.0
     var cornerRadius: CGFloat = 0.0
+    var borderWidth: CGFloat = 0.0
     var textSize: CGFloat = 0.0
     var textColor = UIColor()
     var backgroundColor = UIColor()
+    var borderColor = UIColor()
 }
