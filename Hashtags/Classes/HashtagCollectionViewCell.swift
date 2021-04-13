@@ -73,8 +73,8 @@ open class HashtagCollectionViewCell: UICollectionViewCell {
 
         self.layer.cornerRadius = configuration.cornerRadius
         self.backgroundColor = configuration.backgroundColor
-        
-        self.wordLabel.textColor = configuration.textColor
-        self.wordLabel.font = UIFont.systemFont(ofSize: configuration.textSize)
+    
+        self.wordLabel.textColor = tag.isGoldTag ? configuration.goldTagColor : configuration.textColor
+        self.wordLabel.font = configuration.hashtagFont
     }
 }

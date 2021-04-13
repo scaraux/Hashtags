@@ -18,4 +18,6 @@ open class HashtagConfiguration {
     var textSize: CGFloat = 0.0
     var textColor = UIColor()
     var backgroundColor = UIColor()
+    var goldTagColor : UIColor = UIColor.yellow;
+    var hashtagFont : UIFont = UIFont.systemFont(ofSize: 13.0)
 }
