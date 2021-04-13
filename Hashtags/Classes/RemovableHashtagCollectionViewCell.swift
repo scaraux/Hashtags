@@ -42,9 +42,18 @@ open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
         let bundle = Bundle(for: RemovableHashtagCollectionViewCell.self)
         let removeIcon = UIImage(named: "close", in: bundle, compatibleWith: nil)!
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setImage(removeIcon, for: .normal)
-        btn.imageView?.contentMode = .scaleAspectFit
-        btn.imageView?.tintColor = UIColor.black.withAlphaComponent(0.9)
+        btn.tintColor = UIColor.white
+        
+        if let removeIcon = UIImage(named: "close", in: bundle, compatibleWith: nil) {
+            let tintableImage = removeIcon.withRenderingMode(.alwaysTemplate)
+            btn.setImage(removeIcon, for: .normal)
+            btn.imageView?.contentMode = .scaleAspectFit
+            btn.imageView?.tintColor = UIColor.white.withAlphaComponent(0.9)
+        } else {
+            btn.setTitle("X", for: UIControl.State.normal)
+        }
+        
+       
         return btn
     }()
     
@@ -119,10 +128,10 @@ extension RemovableHashtagCollectionViewCell {
         self.removeButtonSpacingConstraint!.constant = configuration.removeButtonSpacing
         self.removeButtonWidthConstraint!.constant = configuration.removeButtonSize
         
-        self.layer.cornerRadius = configuration.cornerRadius
         self.backgroundColor = configuration.backgroundColor
         
-        self.wordLabel.textColor = configuration.textColor
-        self.wordLabel.font = UIFont.systemFont(ofSize: configuration.textSize)
+        self.wordLabel.textColor = tag.isGoldTag ? configuration.goldTagColor : configuration.textColor
+        self.wordLabel.font = configuration.hashtagFont
+
     }
 }

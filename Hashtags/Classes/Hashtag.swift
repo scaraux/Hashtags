@@ -28,19 +28,18 @@ extension Array where Element: Equatable {
     }
 }
 
-open class HashTag: Equatable {
+@objc open class HashTag: NSObject {
     
     open var text: String
-    open var isRemovable: Bool
-    open var hasHashSymbol: Bool
+    open var isRemovable: Bool = true;
+    open var hasHashSymbol: Bool = true;
+    open var isGoldTag : Bool = false
     open var configuration: HashtagConfiguration?
     
-    public init(word: String, withHashSymbol: Bool = true, isRemovable: Bool = false) {
+    @objc public init(word: String, isGoldTag: Bool = false) {
         self.text = word
-        self.isRemovable = isRemovable
-        self.hasHashSymbol = withHashSymbol
-        
-        if hasHashSymbol {
+        self.isGoldTag = isGoldTag
+        if self.hasHashSymbol && word.hasPrefix("#") == false {
             self.text = "#" + text
         }
     }
