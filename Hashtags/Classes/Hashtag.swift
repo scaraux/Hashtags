@@ -30,21 +30,23 @@ extension Array where Element: Equatable {
 
 @objc open class HashTag: NSObject {
     
+    @objc open var identifier : String = ""
     open var text: String
     open var isRemovable: Bool = true;
     open var hasHashSymbol: Bool = true;
     open var isGoldTag : Bool = false
     open var configuration: HashtagConfiguration?
     
-    @objc public init(word: String, isGoldTag: Bool = false) {
+    @objc public init(word: String, isGoldTag: Bool = false, identifier:String="") {
         self.text = word
         self.isGoldTag = isGoldTag
+        self.identifier = identifier
         if self.hasHashSymbol && word.hasPrefix("#") == false {
             self.text = "#" + text
         }
     }
     
     public static func == (lhs: HashTag, rhs: HashTag) -> Bool {
-        return lhs.text == rhs.text
+        return lhs.identifier == rhs.identifier
     }
 }
