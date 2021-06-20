@@ -174,9 +174,9 @@ open class HashtagView: UIView {
     override open func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
 
-        self.addTag(tag: HashTag(word: "hashtag"))
-        self.addTag(tag: HashTag(word: "hashtag", withHashSymbol: true, isRemovable: false))
-        self.addTag(tag: HashTag(word: "RemovableHashtag", isRemovable: true))
+        self.addTag(tag: HashTag(word: "hashtag", code: "hashtag"))
+        self.addTag(tag: HashTag(word: "hashtag", code: "hashtag", withHashSymbol: true, isRemovable: false))
+        self.addTag(tag: HashTag(word: "RemovableHashtag", code: "RemovableHashtag", isRemovable: true))
     }
 
     open override var intrinsicContentSize: CGSize {
@@ -202,16 +202,16 @@ open class HashtagView: UIView {
         
         let configuration = HashtagConfiguration()
         
-        configuration.paddingLeft = self.tagPaddingLeft
-        configuration.paddingRight = self.tagPaddingRight
-        configuration.paddingTop = self.tagPaddingTop
-        configuration.paddingBottom = self.tagPaddingBottom
-        configuration.removeButtonSize = self.removeButtonSize
+        configuration.paddingLeft         = self.tagPaddingLeft
+        configuration.paddingRight        = self.tagPaddingRight
+        configuration.paddingTop          = self.tagPaddingTop
+        configuration.paddingBottom       = self.tagPaddingBottom
+        configuration.removeButtonSize    = self.removeButtonSize
         configuration.removeButtonSpacing = self.removeButtonSpacing
-        configuration.backgroundColor = self.tagBackgroundColor
-        configuration.cornerRadius = self.tagCornerRadius
-        configuration.textSize = self.textSize
-        configuration.textColor = self.tagTextColor
+        configuration.backgroundColor     = self.tagBackgroundColor
+        configuration.cornerRadius        = self.tagCornerRadius
+        configuration.textSize            = self.textSize
+        configuration.textColor           = self.tagTextColor
         
         return configuration
     }
@@ -229,13 +229,13 @@ open class HashtagView: UIView {
                                                       bottom: self.containerPaddingBottom,
                                                       right: self.containerPaddingRight)
 
-        self.collectionView.showsVerticalScrollIndicator = false
+        self.collectionView.showsVerticalScrollIndicator   = false
         self.collectionView.showsHorizontalScrollIndicator = false
-        self.collectionView.collectionViewLayout = alignedFlowLayout
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-        self.collectionView.backgroundColor = UIColor.clear
-        self.collectionView.isScrollEnabled = false
+        self.collectionView.collectionViewLayout           = alignedFlowLayout
+        self.collectionView.delegate                       = self
+        self.collectionView.dataSource                     = self
+        self.collectionView.backgroundColor                = UIColor.clear
+        self.collectionView.isScrollEnabled                = false
         
         self.collectionView.register(HashtagCollectionViewCell.self,
                                      forCellWithReuseIdentifier: HashtagCollectionViewCell.cellIdentifier)
@@ -336,6 +336,12 @@ extension HashtagView: UICollectionViewDelegate, UICollectionViewDataSource {
 
         cell.configureWithTag(tag: hashtag, configuration: makeConfiguration())
         return cell
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let hashtag: HashTag = self.hashtags[indexPath.item]
+        
+        self.delegate?.didSelectTag(hashtag: hashtag)
     }
 }
 

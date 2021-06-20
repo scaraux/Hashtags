@@ -21,13 +21,13 @@ open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
     
     static let cellIdentifier = "RemovableHashtagCollectionViewCell"
 
-    var paddingLeftConstraint: NSLayoutConstraint?
-    var paddingRightConstraint: NSLayoutConstraint?
-    var paddingTopConstraint: NSLayoutConstraint?
-    var paddingBottomConstraint: NSLayoutConstraint?
-    var removeButtonHeightConstraint: NSLayoutConstraint?
-    var removeButtonWidthConstraint: NSLayoutConstraint?
-    var removeButtonSpacingConstraint: NSLayoutConstraint?
+    var paddingLeftConstraint         : NSLayoutConstraint?
+    var paddingRightConstraint        : NSLayoutConstraint?
+    var paddingTopConstraint          : NSLayoutConstraint?
+    var paddingBottomConstraint       : NSLayoutConstraint?
+    var removeButtonHeightConstraint  : NSLayoutConstraint?
+    var removeButtonWidthConstraint   : NSLayoutConstraint?
+    var removeButtonSpacingConstraint : NSLayoutConstraint?
     
     lazy var wordLabel : UILabel = {
         let lbl = UILabel()
@@ -113,16 +113,16 @@ extension RemovableHashtagCollectionViewCell {
         self.hashtag = tag
         wordLabel.text = tag.text
 
-        self.paddingLeftConstraint!.constant = configuration.paddingLeft
-        self.paddingTopConstraint!.constant = configuration.paddingTop
-        self.paddingBottomConstraint!.constant = -1 * configuration.paddingBottom
+        self.paddingLeftConstraint!.constant         = configuration.paddingLeft
+        self.paddingTopConstraint!.constant          = configuration.paddingTop
+        self.paddingBottomConstraint!.constant       = -1 * configuration.paddingBottom
         self.removeButtonSpacingConstraint!.constant = configuration.removeButtonSpacing
-        self.removeButtonWidthConstraint!.constant = configuration.removeButtonSize
+        self.removeButtonWidthConstraint!.constant   = configuration.removeButtonSize
         
         self.layer.cornerRadius = configuration.cornerRadius
-        self.backgroundColor = configuration.backgroundColor
+        self.backgroundColor    = configuration.backgroundColor
         
         self.wordLabel.textColor = configuration.textColor
-        self.wordLabel.font = UIFont.systemFont(ofSize: configuration.textSize)
+        self.wordLabel.font      = UIFont.systemFont(ofSize : configuration.textSize)
     }
 }
