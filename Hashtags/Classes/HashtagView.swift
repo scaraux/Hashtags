@@ -11,7 +11,6 @@ import AlignedCollectionViewFlowLayout
 
 // MARK: Class
 
-@IBDesignable
 open class HashtagView: UIView {
     
     private var sizingLabel = UILabel(frame: .zero)
@@ -30,7 +29,6 @@ open class HashtagView: UIView {
 
     public var delegate: HashtagViewDelegate?
 
-    @IBInspectable
     open var cornerRadius: CGFloat = 5.0 {
         didSet {
             self.layer.cornerRadius = self.cornerRadius
@@ -39,28 +37,24 @@ open class HashtagView: UIView {
 
     // MARK: Container padding (insets)
     
-    @IBInspectable
     open var containerPaddingLeft: CGFloat = 10.0 {
         didSet {
             setup()
         }
     }
     
-    @IBInspectable
     open var containerPaddingRight: CGFloat = 10.0 {
         didSet {
             setup()
         }
     }
     
-    @IBInspectable
     open var containerPaddingTop: CGFloat = 10.0 {
         didSet {
             setup()
         }
     }
     
-    @IBInspectable
     open var containerPaddingBottom: CGFloat = 10.0 {
         didSet {
             setup()
@@ -69,56 +63,48 @@ open class HashtagView: UIView {
     
     // MARK: Hashtag cell padding
     
-    @IBInspectable
     open var tagPaddingLeft: CGFloat = 5.0 {
         didSet {
             self.collectionView.reloadData()
         }
     }
     
-    @IBInspectable
     open var tagPaddingRight: CGFloat = 5.0 {
         didSet {
             self.collectionView.reloadData()
         }
     }
     
-    @IBInspectable
     open var tagPaddingTop: CGFloat = 5.0 {
         didSet {
             self.collectionView.reloadData()
         }
     }
     
-    @IBInspectable
     open var tagPaddingBottom: CGFloat = 5.0 {
         didSet {
             self.collectionView.reloadData()
         }
     }
     
-    @IBInspectable
     open var tagCornerRadius: CGFloat = 5.0 {
         didSet {
             self.collectionView.reloadData()
         }
     }
     
-    @IBInspectable
     open var textSize: CGFloat = 14.0 {
         didSet {
             self.collectionView.reloadData()
         }
     }
     
-    @IBInspectable
     open var tagBackgroundColor: UIColor = .lightGray {
         didSet {
             self.collectionView.reloadData()
         }
     }
     
-    @IBInspectable
     open var tagTextColor: UIColor = .white {
         didSet {
             self.collectionView.reloadData()
@@ -126,13 +112,12 @@ open class HashtagView: UIView {
     }
     
     
-    @IBInspectable
     open var removeButtonSize: CGFloat = 10.0 {
         didSet {
             self.collectionView.reloadData()
         }
     }
-    @IBInspectable
+    
     open var removeButtonSpacing: CGFloat = 5.0 {
         didSet {
             self.collectionView.reloadData()
@@ -141,14 +126,12 @@ open class HashtagView: UIView {
     
     // MARK: Hashtags cell margins
     
-    @IBInspectable
     open var horizontalTagSpacing: CGFloat = 5.0 {
         didSet {
             setup()
         }
     }
     
-    @IBInspectable
     open var verticalTagSpacing: CGFloat = 5.0 {
         didSet {
             setup()
