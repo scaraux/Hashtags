@@ -13,15 +13,15 @@ open class HashtagCollectionViewCell: UICollectionViewCell {
     
     static let cellIdentifier = "HashtagCollectionViewCell"
     
-    var paddingLeftConstraint: NSLayoutConstraint?
-    var paddingRightConstraint: NSLayoutConstraint?
-    var paddingTopConstraint: NSLayoutConstraint?
-    var paddingBottomConstraint: NSLayoutConstraint?
+    var paddingLeftConstraint   : NSLayoutConstraint?
+    var paddingRightConstraint  : NSLayoutConstraint?
+    var paddingTopConstraint    : NSLayoutConstraint?
+    var paddingBottomConstraint : NSLayoutConstraint?
     
     lazy var wordLabel : UILabel = {
-        let lbl = UILabel()
-        lbl.textColor = UIColor.white
-        lbl.textAlignment = .center
+        let lbl                                       = UILabel()
+        lbl.textColor                                 = UIColor.white
+        lbl.textAlignment                             = .center
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
@@ -63,18 +63,18 @@ open class HashtagCollectionViewCell: UICollectionViewCell {
     }
     
     open func configureWithTag(tag: HashTag, configuration: HashtagConfiguration) {
-        self.hashtag = tag
+        self.hashtag   = tag
         wordLabel.text = tag.text
         
-        self.paddingLeftConstraint!.constant = configuration.paddingLeft
-        self.paddingTopConstraint!.constant = configuration.paddingTop
+        self.paddingLeftConstraint!.constant   = configuration.paddingLeft
+        self.paddingTopConstraint!.constant    = configuration.paddingTop
         self.paddingBottomConstraint!.constant = -1 * configuration.paddingBottom
-        self.paddingRightConstraint!.constant = -1 * configuration.paddingRight
+        self.paddingRightConstraint!.constant  = -1 * configuration.paddingRight
 
         self.layer.cornerRadius = configuration.cornerRadius
-        self.backgroundColor = configuration.backgroundColor
+        self.backgroundColor    = configuration.backgroundColor
         
         self.wordLabel.textColor = configuration.textColor
-        self.wordLabel.font = UIFont.systemFont(ofSize: configuration.textSize)
+        self.wordLabel.font      = UIFont.systemFont(ofSize : configuration.textSize)
     }
 }

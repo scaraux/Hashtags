@@ -30,14 +30,16 @@ extension Array where Element: Equatable {
 
 open class HashTag: Equatable {
     
-    open var text: String
-    open var isRemovable: Bool
-    open var hasHashSymbol: Bool
-    open var configuration: HashtagConfiguration?
+    open var code          : String
+    open var text          : String
+    open var isRemovable   : Bool
+    open var hasHashSymbol : Bool
+    open var configuration : HashtagConfiguration?
     
-    public init(word: String, withHashSymbol: Bool = true, isRemovable: Bool = false) {
-        self.text = word
-        self.isRemovable = isRemovable
+    public init(word: String, code: String, withHashSymbol: Bool = true, isRemovable: Bool = false) {
+        self.text          = word
+        self.code          = code
+        self.isRemovable   = isRemovable
         self.hasHashSymbol = withHashSymbol
         
         if hasHashSymbol {
